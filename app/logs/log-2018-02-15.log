@@ -14,3 +14,9 @@ ERROR - 2018-02-15 06:01:17 --> Severity: Parsing Error --> syntax error, unexpe
 ERROR - 2018-02-15 06:11:57 --> Severity: Parsing Error --> syntax error, unexpected '[' C:\xampp\htdocs\Gmedia\app\controllers\user-management\Employees.php 67
 ERROR - 2018-02-15 06:13:05 --> Severity: Parsing Error --> syntax error, unexpected '[' C:\xampp\htdocs\Gmedia\app\controllers\user-management\Employees.php 66
 ERROR - 2018-02-15 06:13:20 --> Severity: Parsing Error --> syntax error, unexpected '[' C:\xampp\htdocs\Gmedia\app\controllers\user-management\Employees.php 65
+ERROR - 2018-02-15 09:26:57 --> Severity: Parsing Error --> syntax error, unexpected ''"></i></button>'' (T_CONSTANT_ENCAPSED_STRING) C:\xampp\htdocs\Gmedia\app\core\MY_Controller.php 40
+ERROR - 2018-02-15 09:37:12 --> Severity: Parsing Error --> syntax error, unexpected ''"></i></button>'' (T_CONSTANT_ENCAPSED_STRING) C:\xampp\htdocs\Gmedia\app\core\MY_Controller.php 40
+ERROR - 2018-02-15 09:38:41 --> Severity: Parsing Error --> syntax error, unexpected ''"></i></button>'' (T_CONSTANT_ENCAPSED_STRING) C:\xampp\htdocs\Gmedia\app\core\MY_Controller.php 40
+ERROR - 2018-02-15 09:38:44 --> Severity: Parsing Error --> syntax error, unexpected ''"></i></button>'' (T_CONSTANT_ENCAPSED_STRING) C:\xampp\htdocs\Gmedia\app\core\MY_Controller.php 40
+ERROR - 2018-02-15 09:38:46 --> Severity: Parsing Error --> syntax error, unexpected ''"></i></button>'' (T_CONSTANT_ENCAPSED_STRING) C:\xampp\htdocs\Gmedia\app\core\MY_Controller.php 40
+ERROR - 2018-02-15 09:38:50 --> Severity: Parsing Error --> syntax error, unexpected ''"></i></button>'' (T_CONSTANT_ENCAPSED_STRING) C:\xampp\htdocs\Gmedia\app\core\MY_Controller.php 40

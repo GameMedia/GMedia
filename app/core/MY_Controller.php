@@ -35,5 +35,18 @@ class MY_Controller extends CI_Controller
 			$this->uri_string = $this->uri->uri_string();
 	}
 	/*-------------------------------------------------------------------------------------------------*/
+	protected function createElementButtonView($onclick,$modal="",$title="View", $icon="fa-fa-search")
+	{
+		return '<button class="btn btn-xs margin-bottom" title="'.$title.'" onclick="'.$onclick.'" '.$modal.'><i class="'.$icon'"></i></button>';
+	}
+    /*-------------------------------------------------------------------------------------------------*/
+    protected function createElementButtonDelete($id,$url,$database,$title="Delete", $icon="fa-fa-trash-o")
+    {
+    	$onclick="deleteID='".$id."', deleteUrl='".$url."', deleteDataTable='".$datatable."'";
+    	return '<button class="btn blue btn-xs margin-bottom" title="'.$title'" onclick="'.$onclick'" data-target="#formClone" data-toggle="modal"><i class="'.$icon'"></i></button>';
+    }
+    /*-------------------------------------------------------------------------------------------------*/
+    
+
     
 }
