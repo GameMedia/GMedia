@@ -8,7 +8,7 @@ class MY_Controller_Admin extends MY_Controller {
 	protected $folderview		= 'backend/metronic/';
 	/*-------------------------------------------------------------------------------------------------*/
 	public function __construct()
-	{
+	 {
 		parent::__construct();
 		$this->isLogin();
 		$this->isAdmin(); #cek request user
@@ -17,11 +17,11 @@ class MY_Controller_Admin extends MY_Controller {
 		$this->data['folderview']	= $this->folderview;	#setbackend folder view
 		$this->getUriString();
 		$this->getAccess();
-	}
+	 }
 	/*-------------------------------------------------------------------------------------------------*/
 	public function index()
-	{
-	}
+	 {
+	 }
 	/*-------------------------------------------------------------------------------------------------*/
 	private function isAdmin()
 	 {
@@ -60,7 +60,7 @@ class MY_Controller_Admin extends MY_Controller {
 	 }
 	/*-------------------------------------------------------------------------------------------------*/
 	protected function loadMenu()
-	{
+	 {
 		$_sessProfile=$this->session->userdata('profile');
 		$_sessPrivilege=$this->session->userdata('privilege');
 		$_sessIsLogged=$this->session->userdata['isLogged'];
@@ -76,15 +76,32 @@ class MY_Controller_Admin extends MY_Controller {
 		$this->data['pageTitle']		=$this->data['parentList']['name'][0];
 		$this->data['pageDescription']	=$this->data['parentList']['description'][0];
 		return true;
-	}
+	 }
+	/*-------------------------------------------------------------------------------------------------*/
+	protected function getAccess() #perhitungan biner untuk Hak Aksess
+	 {
+	 	$_sessProfile=$this->session->userdata('profile');
+	 	$_sessPrivilege=$this->session->userdata('privilege');
+	 	$_sessIsLogged=$this->session->usedata('isLogged');
+
+	 	if(!$_sessProfile['isAdmin'])
+	 		return false;
+	 	$_modelMenu=$this->load->model('model_menu');
+	 	$this->data['parentList']=$this->model_menu->loadParentList($this->uri_string, $_sessPrivilege['privilege_id']);
+	 	$access=$this->data['parentList']['access'];
+	 	$this->data['accessView']=(!(1&$access) !=0)?0:1;
+	 	$this->data['accessAdd']=(!(2&$access)) !=0)?0:1;
+		$this->data['accessEdit']=(!(4&$access)) !=0)?0:1;
+		$this->data['accessDelete']=(!(8&$access)) !=0)?0:1;
+		return true;
+	 }
+
+	/*-------------------------------------------------------------------------------------------------*/
+
 	/*-------------------------------------------------------------------------------------------------*/
 
 
-
-
-
-
-
+	/*-------------------------------------------------------------------------------------------------*/
 
 
 

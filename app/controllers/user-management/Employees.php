@@ -58,7 +58,7 @@ class Employees extends MY_Controller_Admin {
 				$result['data'][$i][]=$buttonView.' '.$buttonDelete;
 			}
 		}else
-			result['data'] = array();
+			$result['data'] = array();
 		$result["draw"]				= $params['draw'];
 		$result["recordsTotal"]		= $params['total'];
 		$result["recordsFiltered"]	= $data['total'];

@@ -20,3 +20,10 @@ ERROR - 2018-02-15 09:38:41 --> Severity: Parsing Error --> syntax error, unexpe
 ERROR - 2018-02-15 09:38:44 --> Severity: Parsing Error --> syntax error, unexpected ''"></i></button>'' (T_CONSTANT_ENCAPSED_STRING) C:\xampp\htdocs\Gmedia\app\core\MY_Controller.php 40
 ERROR - 2018-02-15 09:38:46 --> Severity: Parsing Error --> syntax error, unexpected ''"></i></button>'' (T_CONSTANT_ENCAPSED_STRING) C:\xampp\htdocs\Gmedia\app\core\MY_Controller.php 40
 ERROR - 2018-02-15 09:38:50 --> Severity: Parsing Error --> syntax error, unexpected ''"></i></button>'' (T_CONSTANT_ENCAPSED_STRING) C:\xampp\htdocs\Gmedia\app\core\MY_Controller.php 40
+ERROR - 2018-02-15 09:59:18 --> Severity: Parsing Error --> syntax error, unexpected ''"></i></button>'' (T_CONSTANT_ENCAPSED_STRING) C:\xampp\htdocs\Gmedia\app\core\MY_Controller.php 40
+ERROR - 2018-02-15 10:02:50 --> Severity: Parsing Error --> syntax error, unexpected ''" onclick="'' (T_CONSTANT_ENCAPSED_STRING) C:\xampp\htdocs\Gmedia\app\core\MY_Controller.php 46
+ERROR - 2018-02-15 10:03:14 --> Severity: Parsing Error --> syntax error, unexpected ''" onclick="'' (T_CONSTANT_ENCAPSED_STRING) C:\xampp\htdocs\Gmedia\app\core\MY_Controller.php 46
+ERROR - 2018-02-15 10:03:44 --> Severity: Parsing Error --> syntax error, unexpected '[' C:\xampp\htdocs\Gmedia\app\controllers\user-management\Employees.php 61
+ERROR - 2018-02-15 10:04:11 --> Severity: Parsing Error --> syntax error, unexpected '[' C:\xampp\htdocs\Gmedia\app\controllers\user-management\Employees.php 61
+ERROR - 2018-02-15 10:05:02 --> Severity: Error --> Call to undefined method Employees::getAccess() C:\xampp\htdocs\Gmedia\app\core\MY_Controller_Admin.php 19
+ERROR - 2018-02-15 10:21:19 --> Severity: Error --> Call to undefined method Employees::getAccess() C:\xampp\htdocs\Gmedia\app\core\MY_Controller_Admin.php 19
