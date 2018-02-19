@@ -117,7 +117,7 @@ class Employees extends MY_Controller_Admin {
 	 						'phone'		=> $params['phone'],
 	 						'status'	=> $params['status']);
 	 		$paramsKey	= array('id'	=> $params['id']);
-	 		$result		= $this->model_globals->cekiu($table, $paramsData, $paramsKey)
+	 		$result		= $this->model_globals->checkUI($table, $paramsData, $paramsKey)
 	 		if($result)
 	 		{
 				$result = $this->model_globals->update($table, $paramsData, $paramsKey);

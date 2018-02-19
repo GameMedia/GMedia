@@ -10,7 +10,7 @@ class Model_global extends MY_Model
 	 }
 	/*-------------------------------------------------------------------------------------------------*/
 	#cek status insert/update
-	public function cekiu($table, $paramsData=array(), $paramsKey=array(),$db='dbCms')
+	public function checkUI($table, $paramsData=array(), $paramsKey=array(),$db='dbCms')
 	 {
 	 	foreach ($paramsKey as $key => $value) 
 	 	{
@@ -55,10 +55,94 @@ class Model_global extends MY_Model
 		$insert['entry_by'] = $this->$db->escape_str($input_by);
 		$insert['entry_time'] = $this->$db->escape_str($input_time);
 		$this->$db->insert($table, $insert);
+
+		$dbResponse = $this->$db->error();
+		if($dbResponse['code'] == 0)
+		{
+			$result['id']=$this->$db->insert_id();
+			$result['success']=true;
+			$result['title']=DB_TITLE_SAVE;
+			$result['message']=DB_SUCCESS_SAVE;
+		}else
+		{
+			$result['success']=false;
+			$result['title']=DB_TITLE_SAVE;
+			$result['message']=$dbResponse['massage'];
+		}
+		return $result;
 	 }
 
 	/*-------------------------------------------------------------------------------------------------*/
+	public function update($table,$paramsData=array(),$paramsKey=array(),$db='dbCms')
+	 {
+	 	$update_by= $this->profile['id'];
+	 	$update_time= date('Y-m-d H:i:s');
+	 	$update= array();
+	 	foreach ($paramsData as $key => $value) 
+	 	{
+	 		if(is_array($value))
+	 		{
+	 			if(!$val[1])
+	 			{
+	 				$update[$key] = $val[0];
+	 			}else
+	 			{
+	 				$update[$key] = $this->$db->escape_str($val[0]);
+	 			}
+	 		}else
+	 		{
+	 			$update[$key] = $this->$db->escape_str($val);
+	 		}
+	 	}
+	 	$update['update_by'] = $this->$db->escape_str($update_by);
+	 	$update['update_time'] = $this->$db->escape_str($update_time);	
 
+	 	foreach ($paramsKey as $key => $value) 
+	 	{
+	 		$this->$db->where($key, $this->$db->escape_str($value));
+	 	}
+	 	$this->$db->update($table, $update);
+	 	$result=array();
+	 	$dbResponse=$this->$db->error();
+	 	if($dbResponse['code']==0)
+	 	{
+	 		$result['succes']= true;
+	 		$result['title']=DB_TITLE_UPDATE;
+	 		$result['message']=DB_SUCCESS_UPDATE;
+	 	}else
+	 	{
+	 		$result['success']= false;
+	 		$result['title']= DB_TITLE_UPDATE;
+	 		$result['message']= $dbResponse['message'];
+	 	}
+	 	return $result;
+	 }
+
+	/*-------------------------------------------------------------------------------------------------*/
+	public function delete($table, $paramsData, $paramsKey, $db='dbCms')
+	 {
+	 	$update_by= $this->profile['id'];
+	 	$update_time= date('Y-m-d H:i:s');
+	 	$delete= array();
+	 	foreach ($paramsData as $key => $value) 
+	 	{
+	 		$this->$db->where($key, $this->$db->escape_str($val));
+	 	}
+	 	$this->$db->update($table, $delete);
+	 	$dbResponse = array();
+	 	if($dbResponse['code'] == 0)
+	 	{
+	 		$result['success'] = true;
+	 		$result['title'] = DB_TITLE_DELETE;
+	 		$result['message'] =DB_SUCCESS_DELETE;
+	 	}else
+	 	{
+	 		$result['success'] = false;
+	 		$result['title'] = DB_TITLE_DELETE;
+	 		$result['message'] = $dbResponse['message'];
+	 	}
+	 	return $result;
+	 }
 
 	/*-------------------------------------------------------------------------------------------------*/
  }
