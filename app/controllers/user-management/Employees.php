@@ -95,12 +95,86 @@ class Employees extends MY_Controller_Admin {
 							'id_user'	=>$this->profile['id'],
 							'action'	=>ACTION_HISTORY_DELETE,
 							'data'		=>($result['success'])?json_encode($params):'',
-							'result'	=>json_encode($result)
-						);
+							'result'	=>json_encode($result));
 			$this->addActionHistory($paramsAct);
 			echo json_encode($result);
 		}
 	}
+	/*-------------------------------------------------------------------------------------------------*/
+	public function saveEmployees()
+	 {
+	 	$this->isAjax(404);
+	 	if(sizeof($_POST))
+	 	{
+	 		$table 		= 'cms_employee';
+	 		$tableuser 	= 'cms_user';
+	 		$this->load->model('backend/model_globals');
+	 		$params 	= $_POST;
+	 		$paramsData	= array(
+	 						'name'		=> $params['name'],
+	 						'address'	=> $params['address'],
+	 						'email'		=> $params['email'],
+	 						'phone'		=> $params['phone'],
+	 						'status'	=> $params['status']);
+	 		$paramsKey	= array('id'	=> $params['id']);
+	 		$result		= $this->model_globals->cekiu($table, $paramsData, $paramsKey)
+	 		if($result)
+	 		{
+				$result = $this->model_globals->update($table, $paramsData, $paramsKey);
+	 			#cek update userdata
+	 			if($result['success'])
+	 			{
+	 				if(empty($params['password']))
+	 				{
+	 					$ParamsDataUser = array(
+											'id_user_type' 	=> $params['id_user_type'],
+											'id_privilege' 	=> $params['id_privilege'],
+											'username' 		=> $params['username'],
+											'status'		=> $params['status']);
+	 				} else
+	 				{
+	 					$ParamsDataUser = array(
+											'id_user_type' 	=> $params['id_user_type'],
+											'id_privilege' 	=> $params['id_privilege'],
+											'username' 		=> $params['username'],
+											'userpass' 		=> md5($params['password']),
+											'status'		=> $params['status']);		
+	 				}
+	 				$paramsKeyUser = array('id_employee' => $params['id'])
+	 				$this->model_globals->update($tableuser, $ParamsDataUser, $paramsKeyUser);
+	 			}
+	 			$paramsAct = array(
+	 							'id_user'	=>$this->profile['id'],
+	 							'action'	=>ACTION_HISTORY_UPDATE,
+	 							'data'		=>($result['success'])?json_encode($params):'',
+	 							'result'	=>json_encode($result));
+	 			$this->addActionHistory($paramsAct);
+	 		}else
+	 		{
+	 			$result	= $this->model_globals->insert($table, $paramsData);
+	 			#cek untuk insert userdata
+	 			if($result['success'])
+	 			{
+	 				$ParamsDataUser = array(
+	 									'id_employee'	=> $result['id'],
+	 									'id_user_type'	=> $params['id_user_type'],
+	 									'id_privilege'	=> $params['id_privilege'],
+	 									'username'		=> $params['username'],
+	 									'userpass'		=> md5($params['password']),
+	 									'status'		= $params['status']);
+	 				$this->model_globals->insert($tableuser, $ParamsDataUser)
+	 			}
+	 			#add action history
+	 			$paramsAct = array(
+	 							'id_user'	=>	$this->profile['id'],
+	 							'action'	=>	ACTION_HISTORY_SAVE,
+	 							'data'		=>	($result['success'])?json_encode($params):'',
+	 							'result'	=> json_encode($result));
+		 		$this->addActionHistory($paramsAct)
+		 	}
+	 	echo json_encode($result);
+		}
+	 }
 	/*-------------------------------------------------------------------------------------------------
 	public function cloneEmployees()
 	{
