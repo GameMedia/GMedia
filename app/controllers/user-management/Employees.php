@@ -6,33 +6,26 @@ class Employees extends MY_Controller_Admin {
 	public function __construct()
 	 {
 		parent::__construct(); 
+		$this->load->model('backend/user-management/model_employees');
+		$this->load->model('backend/parameters/model_user_type');
 	 }
 	/*-------------------------------------------------------------------------------------------------*/
 	public function index()
 	 {
 		$this->loadMenu();		#load menu dari my_controller_admin
-		$this->loadModel();		#load fungsi model dari self
 		$this->data['user_type']= $this->model_user_type->loadUser_TypeSelect();
 		$this->data['privilege']['title']= "Privilege";
-		$this->data['privilege']['url']= "user-management/privilege/loadPrivilegesSelect";
+		$this->data['privilege']['url']= "user-management/privileges/loadPrivilegesSelect";
 
 		$this->data['pageTitle']= 'Employees'; #tampilan header merah
 		$this->data['pageTemplate']= 'user-management/view_employees'; # tabel employee
 		$this->load->view($this->folderLayout.'main',$this->data);  #load view main layout	
 	 }
 	/*-------------------------------------------------------------------------------------------------*/
-	private function loadModel()
-	 {
-		$this->load->model('backend/user-management/model_employees');
-		$this->load->model('backend/parameters/model_user_type');
-		return true;
-	 }
-	/*-------------------------------------------------------------------------------------------------*/
 	public function loadEmployees()
 	 {
 		$this->isAjax(404);
 		$result = array();
-		$this->loadModel();
 
 		$params = $_POST;
 		$data = $this->model_employees->loadEmployees($params);
@@ -50,7 +43,7 @@ class Employees extends MY_Controller_Admin {
 				$result['data'][$i][]=($data['rows'][$i]['status'])?
 				'<span class="label label-sm label-success"> Active </span>':'<span class="label label-sm label-danger"> Inactive </span>';
 
-					$buttonView=$this->createElementButtonView('view(\''.$data['rows'][$i]['id'].'\')','data-target="#formAdd" data-toggle="model"'); #untuk pop up view data employee
+					$buttonView=$this->createElementButtonView('view(\''.$data['rows'][$i]['id'].'\')','data-target="#formAdd" data-toggle="modal"'); #untuk pop up view data employee
 				
 					$buttonDelete="";
 					if($this->data['accessDelete'])
@@ -71,7 +64,6 @@ class Employees extends MY_Controller_Admin {
 		$this->isAjax(404);
 		if(sizeof($_POST))
 		{
-			$this->loadModel();
 			$params=$_POST;
 			$result=$this->model_employees->getEmployeesData($params);
 			echo json_encode($result);
@@ -84,19 +76,19 @@ class Employees extends MY_Controller_Admin {
 		if(sizeof($_POST))
 		{
 			$table='cms_employee';
-			$this->load->model('backend/model_globals');
+			$this->load->model('backend/model_global');
 			$params=$_POST;
 			$paramsData=array('status'=>'-1');
 			$paramsKey=array('id'=>$params['id']);
-			$result=$this->model_globals->delete($table,$paramsData,$paramsKey);
+			$result=$this->model_global->delete($table,$paramsData,$paramsKey);
 
 			#Adding to action history
 			$paramsAct=array(
 							'id_user'	=>$this->profile['id'],
-							'action'	=>ACTION_HISTORY_DELETE,
+							'actions'	=>ACTION_HISTORY_DELETE,
 							'data'		=>($result['success'])?json_encode($params):'',
 							'result'	=>json_encode($result));
-			$this->addActionHistory($paramsAct);
+			$this->addActHistory($paramsAct);
 			echo json_encode($result);
 		}
 	 }
@@ -148,7 +140,7 @@ class Employees extends MY_Controller_Admin {
 	 							'action'	=>ACTION_HISTORY_UPDATE,
 	 							'data'		=>($result['success'])?json_encode($params):'',
 	 							'result'	=>json_encode($result));
-	 			$this->addActionHistory($paramsAct);
+	 			$this->addActHistory($paramsAct);
 	 		}else
 	 		{
 	 			$result	= $this->model_globals->insert($table, $paramsData);
@@ -170,7 +162,7 @@ class Employees extends MY_Controller_Admin {
 	 							'action'	=>	ACTION_HISTORY_SAVE,
 	 							'data'		=>	($result['success'])?json_encode($params):'',
 	 							'result'	=> json_encode($result));
-		 		$this->addActionHistory($paramsAct);
+		 		$this->addActHistory($paramsAct);
 		 	}
 	 	echo json_encode($result);
 		}
@@ -182,7 +174,7 @@ class Employees extends MY_Controller_Admin {
 	 	if(sizeof($_POST))
 	 		$params = $_POST;
 	 	$result = $this->model_privilege_menu->loadMenuSelect($params);
-	 	$result = $this->makeListMenu('$result');
+	 	$result = $this->makeListMenu($result);
 
 	 	if($this->input->is_ajax_reques())
 	 	{

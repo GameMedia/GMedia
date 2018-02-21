@@ -51,13 +51,21 @@ class MY_Controller extends CI_Controller
 		$this->model_history->addActHistory($paramsAct);
 		return true;
 	 }
+	 /*-------------------------------------------------------------------------------------------------*/
+	 #Create Transaction ID
+	protected function createTransactionId()
+	 {
+		$micro = explode('.',microtime(true));
+		$this->transactionId = date("YmdHis").$micro[1];
+		return $this->transactionId;
+	 }
 	/*-------------------------------------------------------------------------------------------------*/
-	protected function createElementButtonView($onclick, $modal="", $title="View", $icon="fa-fa-search")
+	protected function createElementButtonView($onclick, $modal="", $title="View", $icon="fa fa-search")
 	 {
 		return '<button class="btn btn-xs margin-bottom" title="'.$title.'" onclick="'.$onclick.'" '.$modal.'><i class="'.$icon.'"></i></button>';
 	 }
     /*-------------------------------------------------------------------------------------------------*/
-    protected function createElementButtonDelete($id,$url,$datatable,$title="Delete", $icon="fa-fa-trash-o")
+    protected function createElementButtonDelete($id,$url,$datatable,$title="Delete", $icon="fa fa-trash-o")
      {
     	$onclick="deleteID='".$id."', deleteUrl='".$url."', deleteDataTable='".$datatable."'";
     	return '<button class="btn red btn-xs margin-bottom" title="'.$title.'" onclick="'.$onclick.'" data-target="#formDelete" data-toggle="modal"><i class="'.$icon.'"></i></button>';

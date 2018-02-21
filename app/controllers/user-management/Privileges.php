@@ -3,30 +3,28 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class privileges extends MY_Controller_Admin {
 
-	public function __construct() {
+	public function __construct() 
+	 {
 		parent::__construct();
 			
 		$this->load->model('backend/user-management/model_privileges');
 		$this->load->model('backend/parameters/model_user_type');
-	}
-	
+	 }
+	/*-------------------------------------------------------------------------------------------------*/
 	public function index()
-	{	
+	 {	
 		#LoadMenu
 		$this->loadMenu();
-				
 		$this->data['user_type'] = $this->model_user_type->loadUser_TypeSelect();
-		$this->data['sortedMenu'] = $this->loadMenuSelect(array('parent' => '0'));
-				
 		$this->data['pageTitle'] = 'Privileges';
 		$this->data['pageTemplate'] = 'user-management/view_privileges';
 		$this->load->view($this->folderLayout.'main', $this->data);
-	}
-	
-	public function loadPrivileges(){
+	 }
+	/*-------------------------------------------------------------------------------------------------*/
+	public function loadPrivileges()
+	 {
 		$this->isAjax(404);
 		$result = array();
-		
 		$params = $_POST;
 		$data = $this->model_privileges->loadPrivileges($params);
 		
@@ -44,35 +42,31 @@ class privileges extends MY_Controller_Admin {
 				if($this->data['accessDelete'])
 					$buttonDelete = $this->createElementButtonDelete($data['rows'][$i]['id'], 'user-management/privileges/deletePrivileges', 'datatable');
 				
-				$buttonClone = "";
-				if($this->data['accessAdd'])
-					$buttonClone = $this->createElementButtonClone($data['rows'][$i]['id'], 'user-management/privileges/clonePrivileges', 'datatable');
-					
-				$result['data'][$i][] = $buttonView.' '.$buttonDelete.' '.$buttonClone;
+				$result['data'][$i][] = $buttonView.' '.$buttonDelete;
 			}
 		} else
 			$result['data'] = array();
-		
 		$result["draw"] = $params['draw'];
 		$result["recordsTotal"] = $data['total'];
 		$result["recordsFiltered"] = $data['total'];
-		
 		echo json_encode($result);
-	}
-	
-	public function loadPrivilegesSelect(){
+	 }
+
+	/*-------------------------------------------------------------------------------------------------*/
+	public function loadPrivilegesSelect()
+	 {
 		$this->isAjax(404);
-		
 		if(sizeof($_POST)){
 			$params = $_POST;
 			$result = $this->model_privileges->loadPrivilegesSelect($params);
 			
 			echo json_encode($result);
 		}
-	}
-	
-	public function loadMenuSelect($params = array()){
-		
+	 }
+
+	/*-------------------------------------------------------------------------------------------------*/
+	public function loadMenuSelect($params = array())
+	 {
 		$this->load->model('backend/user-management/model_privilege_menu');
 		if(sizeof($_POST))	
 			$params = $_POST;
@@ -84,9 +78,11 @@ class privileges extends MY_Controller_Admin {
 			echo json_encode($result);
 		} else 
 			return $result;
-	}
-	
-	public function savePrivileges(){		
+	 }
+
+	/*-------------------------------------------------------------------------------------------------*/
+	public function savePrivileges()
+	 {		
 		$this->isAjax(404);
 		
 		if(sizeof($_POST)){
@@ -150,9 +146,11 @@ class privileges extends MY_Controller_Admin {
 			echo json_encode($result);
 		}
 
-	}
-	
-	public function deletePrivileges(){		
+	 }
+
+	/*-------------------------------------------------------------------------------------------------*/
+	public function deletePrivileges()
+	 {		
 		$this->isAjax(404);
 		
 		if(sizeof($_POST)){
@@ -182,60 +180,11 @@ class privileges extends MY_Controller_Admin {
 			
 			echo json_encode($result);
 		}
-	}
+	 }
 	
-	public function clonePrivileges(){
-		$this->isAjax(404);
-		
-		if(sizeof($_POST)){
-			$table = 'cms_privilege';
-			$tablePrivilegeMenu = 'cms_privilege_menu';
-			$this->load->model('backend/model_globals');
-			
-			$params = $_POST;
-			
-			$paramsData = array(
-								'id_user_type',
-								array('name', ' (Copy)'), #Mean the name is unique 
-								'default_menu',
-								'status'
-								);
-			
-			$paramsKey = array(
-								'id' 			=> $params['id']
-								);
-			
-			$result = $this->model_globals->cloneRecord($table, $paramsData, $paramsKey);
-			
-			if($result['success']){
-				#Get All Menu And Insert into table privilege
-				$this->load->model('backend/user-management/model_privilege_menu');
-				$dataMenu = $this->model_privilege_menu->getMenuAll();
-				foreach($dataMenu as $key => $val){
-					$paramsAct = array(
-									'id_privilege' 	=> $params['id'],
-									'id_menu' 		=> $val['id'],
-									'access' 		=> '0',
-									'status' 		=> $val['status']
-								   );
-					$this->model_globals->insert($tablePrivilegeMenu, $paramsAct);
-				}
-			}
-			
-			#Adding to Action History
-			$paramsAct = array(
-								'id_user' 	=> $this->profile['id'],
-								'actions' 	=> ACTION_HISTORY_CLONE,
-								'data' 		=> ($result['success'])?json_encode($params):'',
-								'result'	=> json_encode($result)
-							  );
-			$this->addActHistory($paramsAct);
-			
-			echo json_encode($result);
-		}
-	}
-	
-	public function getPrivilegesData(){
+	/*-------------------------------------------------------------------------------------------------*/
+	public function getPrivilegesData()
+	 {
 		$this->isAjax(404);
 		
 		if(sizeof($_POST)){
@@ -243,5 +192,5 @@ class privileges extends MY_Controller_Admin {
 			$result = $this->model_privileges->getPrivilegesData($params);
 			echo json_encode($result);
 		}
-	}
-}
+	 }
+} 

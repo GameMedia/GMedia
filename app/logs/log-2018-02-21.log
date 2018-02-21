@@ -94,3 +94,123 @@ WHERE `p`.`status` != '-1'
 ORDER BY `u`.`name` ASC
  LIMIT 10
 ERROR - 2018-02-21 05:27:00 --> Severity: Error --> Call to a member function num_rows() on a non-object C:\xampp\htdocs\Gmedia\app\models\backend\user-management\Model_privileges.php 84
+ERROR - 2018-02-21 07:04:48 --> Query error: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'WHERE `pv`.`status` != '-1'' at line 2 - Invalid query: SELECT *
+WHERE `pv`.`status` != '-1'
+ERROR - 2018-02-21 07:04:48 --> Severity: Error --> Call to a member function result_array() on a non-object C:\xampp\htdocs\Gmedia\app\models\backend\user-management\Model_privileges.php 50
+ERROR - 2018-02-21 07:05:25 --> Query error: Unknown column 'ut.name' in 'field list' - Invalid query: SELECT `pv`.`id`, `pv`.`name` AS `name_privilege`, `pv`.`status`, `pv`.`entry_time`, `pv`.`update_time`, `me`.`name` AS `name_menu`, `ut`.`name` AS `name_user_type`
+FROM `cms_privilege` `pv`
+JOIN `cms_menu` `me` ON `pv`.`default_menu` = `me`.`id`
+JOIN `cms_user` `ut` ON `pv`.`id_user_type` = `ut`.`id`
+WHERE `pv`.`status` != '-1'
+ORDER BY `us`.`name` ASC
+ LIMIT 10
+ERROR - 2018-02-21 07:05:25 --> Severity: Error --> Call to a member function num_rows() on a non-object C:\xampp\htdocs\Gmedia\app\models\backend\user-management\Model_privileges.php 84
+ERROR - 2018-02-21 07:06:19 --> Severity: Notice --> Undefined index: count C:\xampp\htdocs\Gmedia\app\controllers\user-management\Privileges.php 33
+ERROR - 2018-02-21 07:06:19 --> Severity: Notice --> Undefined index: total C:\xampp\htdocs\Gmedia\app\controllers\user-management\Privileges.php 57
+ERROR - 2018-02-21 07:06:19 --> Severity: Notice --> Undefined index: total C:\xampp\htdocs\Gmedia\app\controllers\user-management\Privileges.php 58
+ERROR - 2018-02-21 07:07:20 --> Severity: Notice --> Undefined index: count C:\xampp\htdocs\Gmedia\app\controllers\user-management\Privileges.php 33
+ERROR - 2018-02-21 07:08:37 --> Query error: Unknown column 'ut.name' in 'field list' - Invalid query: SELECT `pv`.`id`, `pv`.`name` AS `name_privilege`, `pv`.`status`, `pv`.`entry_time`, `pv`.`update_time`, `me`.`name` AS `name_menu`, `ut`.`name` AS `name_user_type`
+FROM `cms_privilege` `pv`
+JOIN `cms_menu` `me` ON `pv`.`default_menu` = `me`.`id`
+JOIN `cms_user` `ut` ON `pv`.`id_user_type` = `ut`.`id`
+WHERE `pv`.`status` != '-1'
+ORDER BY `us`.`name` ASC
+ LIMIT 10
+ERROR - 2018-02-21 07:08:37 --> Severity: Error --> Call to a member function num_rows() on a non-object C:\xampp\htdocs\Gmedia\app\models\backend\user-management\Model_privileges.php 84
+ERROR - 2018-02-21 07:32:55 --> Query error: Unknown column 'ut.name' in 'field list' - Invalid query: SELECT `pv`.`id`, `pv`.`name` AS `name_privilege`, `pv`.`status`, `pv`.`entry_time`, `pv`.`update_time`, `me`.`name` AS `name_menu`, `ut`.`name` AS `name_user_type`
+FROM `cms_privilege` `pv`
+JOIN `cms_menu` `me` ON `pv`.`default_menu` = `me`.`id`
+JOIN `cms_user` `ut` ON `pv`.`id_user_type` = `ut`.`id`
+WHERE `pv`.`status` != '-1'
+ORDER BY `us`.`name` ASC
+ LIMIT 10
+ERROR - 2018-02-21 07:32:55 --> Severity: Error --> Call to a member function num_rows() on a non-object C:\xampp\htdocs\Gmedia\app\models\backend\user-management\Model_privileges.php 84
+ERROR - 2018-02-21 07:33:14 --> Query error: Unknown column 'ut.name' in 'field list' - Invalid query: SELECT `pv`.`id`, `pv`.`name` AS `name_privilege`, `pv`.`status`, `pv`.`entry_time`, `pv`.`update_time`, `me`.`name` AS `name_menu`, `ut`.`name` AS `name_user_type`
+FROM `cms_privilege` `pv`
+JOIN `cms_menu` `me` ON `pv`.`default_menu` = `me`.`id`
+JOIN `cms_user` `ut` ON `pv`.`id_user_type` = `ut`.`id`
+WHERE `pv`.`status` != '-1'
+ORDER BY `us`.`name` ASC
+ LIMIT 10
+ERROR - 2018-02-21 07:33:14 --> Severity: Error --> Call to a member function num_rows() on a non-object C:\xampp\htdocs\Gmedia\app\models\backend\user-management\Model_privileges.php 84
+ERROR - 2018-02-21 07:34:31 --> Query error: Unknown column 'ut.name' in 'field list' - Invalid query: SELECT `pv`.`id`, `pv`.`name` AS `name_privilege`, `pv`.`status`, `pv`.`entry_time`, `pv`.`update_time`, `me`.`name` AS `name_menu`, `ut`.`name` AS `name_user_type`
+FROM `cms_privilege` `pv`
+JOIN `cms_menu` `me` ON `pv`.`default_menu` = `me`.`id`
+JOIN `cms_user` `ut` ON `pv`.`id_user_type` = `ut`.`id`
+WHERE `pv`.`status` != '-1'
+ORDER BY `ut`.`name` ASC
+ LIMIT 10
+ERROR - 2018-02-21 07:34:31 --> Severity: Error --> Call to a member function num_rows() on a non-object C:\xampp\htdocs\Gmedia\app\models\backend\user-management\Model_privileges.php 84
+ERROR - 2018-02-21 07:40:05 --> Query error: Unknown column 'ut.name' in 'field list' - Invalid query: SELECT `pv`.`id`, `pv`.`name` AS `name_privilege`, `pv`.`status`, `pv`.`entry_time`, `pv`.`update_time`, `me`.`name` AS `name_menu`, `ut`.`name` AS `name_user_type`
+FROM `cms_privilege` `pv`
+JOIN `cms_menu` `me` ON `pv`.`default_menu` = `me`.`id`
+JOIN `cms_user` `ut` ON `pv`.`id_user_type` = `ut`.`id`
+ERROR - 2018-02-21 07:40:05 --> Severity: Error --> Call to a member function num_rows() on a non-object C:\xampp\htdocs\Gmedia\app\models\backend\user-management\Model_privileges.php 84
+ERROR - 2018-02-21 07:41:34 --> Severity: Notice --> Undefined index: name_menu C:\xampp\htdocs\Gmedia\app\models\backend\user-management\Model_privileges.php 89
+ERROR - 2018-02-21 07:41:34 --> Severity: Notice --> Undefined index: name_user_type C:\xampp\htdocs\Gmedia\app\models\backend\user-management\Model_privileges.php 90
+ERROR - 2018-02-21 07:41:34 --> Severity: Notice --> Undefined index: name_menu C:\xampp\htdocs\Gmedia\app\models\backend\user-management\Model_privileges.php 89
+ERROR - 2018-02-21 07:41:34 --> Severity: Notice --> Undefined index: name_user_type C:\xampp\htdocs\Gmedia\app\models\backend\user-management\Model_privileges.php 90
+ERROR - 2018-02-21 07:41:34 --> Severity: Notice --> Undefined index: name_menu C:\xampp\htdocs\Gmedia\app\models\backend\user-management\Model_privileges.php 89
+ERROR - 2018-02-21 07:41:34 --> Severity: Notice --> Undefined index: name_user_type C:\xampp\htdocs\Gmedia\app\models\backend\user-management\Model_privileges.php 90
+ERROR - 2018-02-21 07:41:34 --> Severity: Warning --> Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\Gmedia\sys_ci_3.0\core\Exceptions.php:272) C:\xampp\htdocs\Gmedia\sys_ci_3.0\core\Common.php 569
+ERROR - 2018-02-21 07:41:34 --> Severity: Error --> Call to undefined method privileges::createElementButtonClone() C:\xampp\htdocs\Gmedia\app\controllers\user-management\Privileges.php 49
+ERROR - 2018-02-21 07:42:04 --> Severity: Notice --> Undefined index: name_user_type C:\xampp\htdocs\Gmedia\app\models\backend\user-management\Model_privileges.php 90
+ERROR - 2018-02-21 07:42:04 --> Severity: Notice --> Undefined index: name_user_type C:\xampp\htdocs\Gmedia\app\models\backend\user-management\Model_privileges.php 90
+ERROR - 2018-02-21 07:42:04 --> Severity: Notice --> Undefined index: name_user_type C:\xampp\htdocs\Gmedia\app\models\backend\user-management\Model_privileges.php 90
+ERROR - 2018-02-21 07:42:04 --> Severity: Error --> Call to undefined method privileges::createElementButtonClone() C:\xampp\htdocs\Gmedia\app\controllers\user-management\Privileges.php 49
+ERROR - 2018-02-21 07:43:28 --> Severity: Notice --> Undefined index: name_user_type C:\xampp\htdocs\Gmedia\app\models\backend\user-management\Model_privileges.php 90
+ERROR - 2018-02-21 07:43:28 --> Severity: Notice --> Undefined index: name_user_type C:\xampp\htdocs\Gmedia\app\models\backend\user-management\Model_privileges.php 90
+ERROR - 2018-02-21 07:43:28 --> Severity: Notice --> Undefined index: name_user_type C:\xampp\htdocs\Gmedia\app\models\backend\user-management\Model_privileges.php 90
+ERROR - 2018-02-21 07:43:28 --> Severity: Error --> Call to undefined method privileges::createElementButtonClone() C:\xampp\htdocs\Gmedia\app\controllers\user-management\Privileges.php 49
+ERROR - 2018-02-21 07:44:36 --> Query error: Unknown column 'ut.name' in 'field list' - Invalid query: SELECT `pv`.`id`, `pv`.`name` AS `name_privilege`, `pv`.`status`, `pv`.`entry_time`, `pv`.`update_time`, `me`.`name` AS `name_menu`, `ut`.`name` AS `name_user_type`
+FROM `cms_privilege` `pv`
+JOIN `cms_menu` `me` ON `pv`.`default_menu` = `me`.`id`
+JOIN `cms_user` `ut` ON `pv`.`id_user_type` = `ut`.`id`
+ERROR - 2018-02-21 07:44:36 --> Severity: Error --> Call to a member function num_rows() on a non-object C:\xampp\htdocs\Gmedia\app\models\backend\user-management\Model_privileges.php 84
+ERROR - 2018-02-21 07:46:24 --> Severity: Notice --> Undefined index: name_user_type C:\xampp\htdocs\Gmedia\app\controllers\user-management\Privileges.php 36
+ERROR - 2018-02-21 07:46:24 --> Severity: Notice --> Undefined index: name_menu C:\xampp\htdocs\Gmedia\app\controllers\user-management\Privileges.php 38
+ERROR - 2018-02-21 07:46:24 --> Severity: Error --> Call to undefined method privileges::createElementButtonClone() C:\xampp\htdocs\Gmedia\app\controllers\user-management\Privileges.php 49
+ERROR - 2018-02-21 07:46:59 --> Severity: Notice --> Undefined index: name_user_type C:\xampp\htdocs\Gmedia\app\controllers\user-management\Privileges.php 36
+ERROR - 2018-02-21 07:46:59 --> Severity: Notice --> Undefined index: name_menu C:\xampp\htdocs\Gmedia\app\controllers\user-management\Privileges.php 38
+ERROR - 2018-02-21 07:46:59 --> Severity: Error --> Call to undefined method privileges::createElementButtonClone() C:\xampp\htdocs\Gmedia\app\controllers\user-management\Privileges.php 49
+ERROR - 2018-02-21 07:47:19 --> Severity: Notice --> Undefined index: name_user_type C:\xampp\htdocs\Gmedia\app\controllers\user-management\Privileges.php 36
+ERROR - 2018-02-21 07:47:19 --> Severity: Notice --> Undefined index: name_menu C:\xampp\htdocs\Gmedia\app\controllers\user-management\Privileges.php 38
+ERROR - 2018-02-21 07:47:19 --> Severity: Error --> Call to undefined method privileges::createElementButtonClone() C:\xampp\htdocs\Gmedia\app\controllers\user-management\Privileges.php 49
+ERROR - 2018-02-21 07:51:45 --> Severity: Error --> Call to undefined method privileges::createElementButtonClone() C:\xampp\htdocs\Gmedia\app\controllers\user-management\Privileges.php 49
+ERROR - 2018-02-21 07:54:05 --> 404 Page Not Found: user-management/Privilege/loadPrivilegesSelect
+ERROR - 2018-02-21 07:58:34 --> 404 Page Not Found: user-management/Privilege/loadPrivilegesSelect
+ERROR - 2018-02-21 08:03:38 --> 404 Page Not Found: user-management/Privilege/loadPrivilegesSelect
+ERROR - 2018-02-21 08:14:02 --> 404 Page Not Found: user-management/Privilege/loadPrivilegesSelect
+ERROR - 2018-02-21 08:22:57 --> 404 Page Not Found: user-management/Privilege/loadPrivilegesSelect
+ERROR - 2018-02-21 08:24:50 --> 404 Page Not Found: user-management/Privilege/loadPrivilegesSelect
+ERROR - 2018-02-21 08:26:36 --> 404 Page Not Found: user-management/Privilege/loadPrivilegesSelect
+ERROR - 2018-02-21 08:29:07 --> 404 Page Not Found: user-management/Privilege/loadPrivilegesSelect
+ERROR - 2018-02-21 08:30:20 --> 404 Page Not Found: user-management/Privilege/loadPrivilegesSelect
+ERROR - 2018-02-21 08:43:08 --> Severity: Error --> Call to undefined method Employees::loadModel() C:\xampp\htdocs\Gmedia\app\controllers\user-management\Employees.php 29
+ERROR - 2018-02-21 09:39:18 --> Severity: Notice --> Undefined property: Employees::$model_globals C:\xampp\htdocs\Gmedia\app\controllers\user-management\Employees.php 83
+ERROR - 2018-02-21 09:39:18 --> Severity: Error --> Call to a member function delete() on a non-object C:\xampp\htdocs\Gmedia\app\controllers\user-management\Employees.php 83
+ERROR - 2018-02-21 09:39:58 --> Severity: Notice --> Undefined property: Employees::$model_globals C:\xampp\htdocs\Gmedia\app\controllers\user-management\Employees.php 83
+ERROR - 2018-02-21 09:39:58 --> Severity: Error --> Call to a member function delete() on a non-object C:\xampp\htdocs\Gmedia\app\controllers\user-management\Employees.php 83
+ERROR - 2018-02-21 09:41:07 --> Severity: Notice --> Undefined property: Employees::$model_globals C:\xampp\htdocs\Gmedia\app\controllers\user-management\Employees.php 83
+ERROR - 2018-02-21 09:41:07 --> Severity: Error --> Call to a member function delete() on a non-object C:\xampp\htdocs\Gmedia\app\controllers\user-management\Employees.php 83
+ERROR - 2018-02-21 09:42:12 --> Severity: Notice --> Undefined variable: val C:\xampp\htdocs\Gmedia\app\models\backend\Model_global.php 131
+ERROR - 2018-02-21 09:42:12 --> Severity: Notice --> Undefined index: code C:\xampp\htdocs\Gmedia\app\models\backend\Model_global.php 135
+ERROR - 2018-02-21 09:42:12 --> Severity: Error --> Call to undefined method Employees::addActionHistory() C:\xampp\htdocs\Gmedia\app\controllers\user-management\Employees.php 91
+ERROR - 2018-02-21 09:45:36 --> Severity: Notice --> Undefined index: code C:\xampp\htdocs\Gmedia\app\models\backend\Model_global.php 135
+ERROR - 2018-02-21 09:45:36 --> Severity: Error --> Call to undefined method Employees::addActionHistory() C:\xampp\htdocs\Gmedia\app\controllers\user-management\Employees.php 91
+ERROR - 2018-02-21 09:57:46 --> Severity: Error --> Call to a member function escape_str() on a non-object C:\xampp\htdocs\Gmedia\app\models\backend\Model_global.php 138
+ERROR - 2018-02-21 09:59:07 --> Severity: Error --> Call to undefined method Employees::addActionHistory() C:\xampp\htdocs\Gmedia\app\controllers\user-management\Employees.php 91
+ERROR - 2018-02-21 10:05:25 --> Severity: Error --> Call to undefined method Employees::addActionHistory() C:\xampp\htdocs\Gmedia\app\controllers\user-management\Employees.php 91
+ERROR - 2018-02-21 10:08:11 --> Severity: Error --> Call to undefined method Employees::addActionHistory() C:\xampp\htdocs\Gmedia\app\controllers\user-management\Employees.php 91
+ERROR - 2018-02-21 10:09:09 --> Severity: Error --> Call to undefined method Employees::createTransactionId() C:\xampp\htdocs\Gmedia\app\core\MY_Controller.php 45
+ERROR - 2018-02-21 10:10:47 --> Severity: Notice --> Undefined index: actions C:\xampp\htdocs\Gmedia\app\core\MY_Controller.php 48
+ERROR - 2018-02-21 10:10:47 --> Query error: Unknown column 'ip' in 'field list' - Invalid query: INSERT INTO `cms_action_history` (`id`, `id_user`, `url`, `actions`, `data`, `result`, `ip`, `entry_by`, `entry_time`) VALUES ('201802211010476518', '1', 'user-management/employees', '', '{\\\"id\\\":\\\"2\\\"}', '{\\\"success\\\":true,\\\"title\\\":\\\"Deleting Data\\\",\\\"message\\\":\\\"Data has been deleted.\\\"}', '::1', '1', '2018-02-21 10:10:47')
+ERROR - 2018-02-21 10:13:55 --> Severity: Notice --> Undefined index: actions C:\xampp\htdocs\Gmedia\app\core\MY_Controller.php 48
+ERROR - 2018-02-21 10:13:55 --> Query error: Unknown column 'ip' in 'field list' - Invalid query: INSERT INTO `cms_action_history` (`id`, `id_user`, `url`, `actions`, `data`, `result`, `ip`, `entry_by`, `entry_time`) VALUES ('201802211013559278', '1', 'user-management/employees', '', '{\\\"id\\\":\\\"2\\\"}', '{\\\"success\\\":true,\\\"title\\\":\\\"Deleting Data\\\",\\\"message\\\":\\\"Data has been deleted.\\\"}', '::1', '1', '2018-02-21 10:13:55')
+ERROR - 2018-02-21 10:17:03 --> Severity: Notice --> Undefined index: actions C:\xampp\htdocs\Gmedia\app\core\MY_Controller.php 48
+ERROR - 2018-02-21 10:17:03 --> Query error: Unknown column 'ip' in 'field list' - Invalid query: INSERT INTO `cms_action_history` (`id`, `id_user`, `url`, `actions`, `data`, `result`, `ip`, `entry_by`, `entry_time`) VALUES ('201802211017030086', '1', 'user-management/employees', '', '{\\\"id\\\":\\\"2\\\"}', '{\\\"success\\\":true,\\\"title\\\":\\\"Deleting Data\\\",\\\"message\\\":\\\"Data has been deleted.\\\"}', '::1', '1', '2018-02-21 10:17:03')
+ERROR - 2018-02-21 10:19:38 --> Query error: Unknown column 'ip' in 'field list' - Invalid query: INSERT INTO `cms_action_history` (`id`, `id_user`, `url`, `actions`, `data`, `result`, `ip`, `entry_by`, `entry_time`) VALUES ('201802211019381475', '1', 'user-management/employees', 'Delete', '{\\\"id\\\":\\\"2\\\"}', '{\\\"success\\\":true,\\\"title\\\":\\\"Deleting Data\\\",\\\"message\\\":\\\"Data has been deleted.\\\"}', '::1', '1', '2018-02-21 10:19:38')
+ERROR - 2018-02-21 10:21:18 --> Query error: Unknown column 'ip' in 'field list' - Invalid query: INSERT INTO `cms_action_history` (`id`, `id_user`, `url`, `actions`, `data`, `result`, `ip`, `entry_by`, `entry_time`) VALUES ('201802211021183054', '1', 'user-management/employees', 'Delete', '{\\\"id\\\":\\\"2\\\"}', '{\\\"success\\\":true,\\\"title\\\":\\\"Deleting Data\\\",\\\"message\\\":\\\"Data has been deleted.\\\"}', '::1', '1', '2018-02-21 10:21:18')
+ERROR - 2018-02-21 10:26:47 --> Severity: Notice --> Undefined variable: d C:\xampp\htdocs\Gmedia\app\models\backend\Model_global.php 131
+ERROR - 2018-02-21 10:26:47 --> Severity: Error --> Cannot access empty property C:\xampp\htdocs\Gmedia\sys_ci_3.0\core\Model.php 77
+ERROR - 2018-02-21 10:28:04 --> Query error: Unknown column 'ip' in 'field list' - Invalid query: INSERT INTO `cms_action_history` (`id`, `id_user`, `url`, `actions`, `data`, `result`, `ip`, `entry_by`, `entry_time`) VALUES ('201802211028039948', '1', 'user-management/employees', 'Delete', '{\\\"id\\\":\\\"2\\\"}', '{\\\"success\\\":true,\\\"title\\\":\\\"Deleting Data\\\",\\\"message\\\":\\\"Data has been deleted.\\\"}', '::1', '1', '2018-02-21 10:28:03')

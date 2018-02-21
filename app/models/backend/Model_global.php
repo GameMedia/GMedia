@@ -9,6 +9,7 @@ class model_global extends MY_Model
 		$this->loadDbCms();
 	 }
 	/*-------------------------------------------------------------------------------------------------*/
+
 	#cek status insert/update
 	public function checkUI($table, $paramsData=array(), $paramsKey=array(),$db='dbCms')
 	 {
@@ -29,6 +30,7 @@ class model_global extends MY_Model
 	 	return $result;
 	 }
 	/*-------------------------------------------------------------------------------------------------*/
+
 	public function insert($table,$paramsData=array(),$db='dbCms')
 	 {
 	 	$result= array();
@@ -45,7 +47,7 @@ class model_global extends MY_Model
 					$insert[$key]= $value[0];
 				} else
 				{
-					$insert[$key]= $this->$db->escape_str($val[0]);
+					$insert[$key]= $this->$db->escape_str($value[0]);
 				}
 			}else
 			{
@@ -82,12 +84,12 @@ class model_global extends MY_Model
 	 	{
 	 		if(is_array($value))
 	 		{
-	 			if(!$val[1])
+	 			if(!$value[1])
 	 			{
-	 				$update[$key] = $val[0];
+	 				$update[$key] = $value[0];
 	 			}else
 	 			{
-	 				$update[$key] = $this->$db->escape_str($val[0]);
+	 				$update[$key] = $this->$db->escape_str($value[0]);
 	 			}
 	 		}else
 	 		{
@@ -126,15 +128,24 @@ class model_global extends MY_Model
 	 	$delete= array();
 	 	foreach ($paramsData as $key => $value) 
 	 	{
-	 		$this->$db->where($key, $this->$db->escape_str($val));
+	 		$delete[$key] = $this->$db->escape_str($value);
 	 	}
+	 	$delete['update_by'] = $this->$db->escape_str($update_by);
+	 	$delete['update_time'] = $this->$db->escape_str($update_time);
+
+	 	foreach ($paramsKey as $key => $value) 
+	 	{
+	 		$this->$db->where($key, $this->$db->escape_str($value));
+	 	}
+
 	 	$this->$db->update($table, $delete);
-	 	$dbResponse = array();
+	 	$result = array();
+	 	$dbResponse = $this->$db->error();
 	 	if($dbResponse['code'] == 0)
 	 	{
 	 		$result['success'] = true;
 	 		$result['title'] = DB_TITLE_DELETE;
-	 		$result['message'] =DB_SUCCESS_DELETE;
+	 		$result['message'] = DB_SUCCESS_DELETE;
 	 	}else
 	 	{
 	 		$result['success'] = false;
