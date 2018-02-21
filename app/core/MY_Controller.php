@@ -1,4 +1,6 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php 
+if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
 class MY_Controller extends CI_Controller
 {
 	protected $data			= array();
@@ -7,8 +9,7 @@ class MY_Controller extends CI_Controller
 	
 	function __construct()
 	 {
-		parent::__construct();
-				
+		parent::__construct();		
 		#Set data to display on View
 		$this->data['base_url'] = $this->config->item('base_url');
 		$this->data['base_url_index'] = $this->config->item('base_url_index');
@@ -51,15 +52,15 @@ class MY_Controller extends CI_Controller
 		return true;
 	 }
 	/*-------------------------------------------------------------------------------------------------*/
-	protected function createElementButtonView($onclick,$modal="",$title="View", $icon="fa-fa-search")
+	protected function createElementButtonView($onclick, $modal="", $title="View", $icon="fa-fa-search")
 	 {
 		return '<button class="btn btn-xs margin-bottom" title="'.$title.'" onclick="'.$onclick.'" '.$modal.'><i class="'.$icon.'"></i></button>';
 	 }
     /*-------------------------------------------------------------------------------------------------*/
-    protected function createElementButtonDelete($id,$url,$database,$title="Delete", $icon="fa-fa-trash-o")
+    protected function createElementButtonDelete($id,$url,$datatable,$title="Delete", $icon="fa-fa-trash-o")
      {
     	$onclick="deleteID='".$id."', deleteUrl='".$url."', deleteDataTable='".$datatable."'";
-    	return '<button class="btn blue btn-xs margin-bottom" title="'.$title.'" onclick="'.$onclick.'" data-target="#formClone" data-toggle="modal"><i class="'.$icon.'"></i></button>';
+    	return '<button class="btn red btn-xs margin-bottom" title="'.$title.'" onclick="'.$onclick.'" data-target="#formDelete" data-toggle="modal"><i class="'.$icon.'"></i></button>';
      }
     /*-------------------------------------------------------------------------------------------------*/
 

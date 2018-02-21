@@ -1,0 +1,96 @@
+ERROR - 2018-02-21 02:50:49 --> 404 Page Not Found: Faviconico/index
+ERROR - 2018-02-21 02:51:04 --> Severity: Notice --> Undefined index: name_employee C:\xampp\htdocs\Gmedia\app\views\backend\layout\_pageheader.php 66
+ERROR - 2018-02-21 02:51:12 --> Severity: Notice --> Undefined variable: datatable C:\xampp\htdocs\Gmedia\app\core\MY_Controller.php 62
+ERROR - 2018-02-21 02:51:12 --> Severity: Notice --> Undefined variable: datatable C:\xampp\htdocs\Gmedia\app\core\MY_Controller.php 62
+ERROR - 2018-02-21 02:51:12 --> Severity: Notice --> Undefined index: total C:\xampp\htdocs\Gmedia\app\controllers\user-management\Employees.php 63
+ERROR - 2018-02-21 03:02:54 --> Severity: Notice --> Undefined index: total C:\xampp\htdocs\Gmedia\app\controllers\user-management\Employees.php 63
+ERROR - 2018-02-21 03:04:27 --> Severity: Notice --> Undefined index: name_employee C:\xampp\htdocs\Gmedia\app\views\backend\layout\_pageheader.php 66
+ERROR - 2018-02-21 03:07:44 --> 404 Page Not Found: /index
+ERROR - 2018-02-21 03:08:05 --> Severity: Notice --> Undefined index: name_employee C:\xampp\htdocs\Gmedia\app\views\backend\layout\_pageheader.php 66
+ERROR - 2018-02-21 03:24:27 --> 404 Page Not Found: /index
+ERROR - 2018-02-21 03:25:05 --> 404 Page Not Found: user-management/Privilege/loadPrivilegesSelect
+ERROR - 2018-02-21 03:25:17 --> 404 Page Not Found: user-management/Privilege/loadPrivilegesSelect
+ERROR - 2018-02-21 03:25:18 --> 404 Page Not Found: user-management/Privilege/loadPrivilegesSelect
+ERROR - 2018-02-21 03:25:50 --> 404 Page Not Found: user-management/Privilege/loadPrivilegesSelect
+ERROR - 2018-02-21 03:25:52 --> 404 Page Not Found: user-management/Privilege/loadPrivilegesSelect
+ERROR - 2018-02-21 03:25:53 --> 404 Page Not Found: user-management/Privilege/loadPrivilegesSelect
+ERROR - 2018-02-21 03:26:05 --> 404 Page Not Found: user-management/Privilege/loadPrivilegesSelect
+ERROR - 2018-02-21 03:26:10 --> 404 Page Not Found: user-management/Privilege/loadPrivilegesSelect
+ERROR - 2018-02-21 03:26:15 --> 404 Page Not Found: user-management/Privilege/loadPrivilegesSelect
+ERROR - 2018-02-21 03:26:48 --> 404 Page Not Found: user-management/Privilege/loadPrivilegesSelect
+ERROR - 2018-02-21 03:28:33 --> 404 Page Not Found: user-management/Privilege/loadPrivilegesSelect
+ERROR - 2018-02-21 03:40:56 --> 404 Page Not Found: user-management/Privilege/loadPrivilegesSelect
+ERROR - 2018-02-21 03:41:25 --> 404 Page Not Found: user-management/Privilege/loadPrivilegesSelect
+ERROR - 2018-02-21 03:53:54 --> 404 Page Not Found: user-management/Privilege/loadPrivilegesSelect
+ERROR - 2018-02-21 03:56:26 --> 404 Page Not Found: user-management/Privilege/loadPrivilegesSelect
+ERROR - 2018-02-21 04:00:56 --> 404 Page Not Found: user-management/Privilege/loadPrivilegesSelect
+ERROR - 2018-02-21 04:01:50 --> 404 Page Not Found: user-management/Privilege/loadPrivilegesSelect
+ERROR - 2018-02-21 04:01:52 --> 404 Page Not Found: user-management/Privilege/loadPrivilegesSelect
+ERROR - 2018-02-21 04:01:53 --> 404 Page Not Found: user-management/Privilege/loadPrivilegesSelect
+ERROR - 2018-02-21 04:01:55 --> 404 Page Not Found: user-management/Privilege/loadPrivilegesSelect
+ERROR - 2018-02-21 04:01:56 --> 404 Page Not Found: user-management/Privilege/loadPrivilegesSelect
+ERROR - 2018-02-21 04:01:58 --> 404 Page Not Found: user-management/Privilege/loadPrivilegesSelect
+ERROR - 2018-02-21 04:02:02 --> 404 Page Not Found: user-management/Privilege/loadPrivilegesSelect
+ERROR - 2018-02-21 04:08:16 --> 404 Page Not Found: user-management/Privilege/loadPrivilegesSelect
+ERROR - 2018-02-21 04:42:45 --> 404 Page Not Found: user-management/Privilege/loadPrivilegesSelect
+ERROR - 2018-02-21 04:45:09 --> 404 Page Not Found: user-management/Privilege/loadPrivilegesSelect
+ERROR - 2018-02-21 04:45:23 --> 404 Page Not Found: user-management/Privilege/loadPrivilegesSelect
+ERROR - 2018-02-21 04:51:48 --> 404 Page Not Found: user-management/Privilege/loadPrivilegesSelect
+ERROR - 2018-02-21 04:56:31 --> Query error: Unknown column 'ut.name' in 'field list' - Invalid query: SELECT `pv`.`id`, `pv`.`name` AS `name_privilege`, `pv`.`status`, `pv`.`entry_time`, `pv`.`update_time`, `me`.`name` AS `name_menu`, `ut`.`name` AS `name_user_type`
+FROM `cms_privilege` `pv`
+JOIN `cms_menu` `me` ON `pv`.`default_menu` = `me`.`id`
+JOIN `cms_user` `ut` ON `pv`.`id_user_type` = `ut`.`id`
+WHERE `pv`.`status` != '-1'
+ORDER BY `ut`.`name` ASC
+ LIMIT 10
+ERROR - 2018-02-21 04:56:31 --> Severity: Error --> Call to a member function num_rows() on a non-object C:\xampp\htdocs\Gmedia\app\models\backend\user-management\Model_privileges.php 82
+ERROR - 2018-02-21 05:02:05 --> 404 Page Not Found: user-management/Privilege/loadPrivilegesSelect
+ERROR - 2018-02-21 05:02:43 --> Query error: Unknown column 'ut.name' in 'field list' - Invalid query: SELECT `pv`.`id`, `pv`.`name` AS `name_privilege`, `pv`.`status`, `pv`.`entry_time`, `pv`.`update_time`, `me`.`name` AS `name_menu`, `ut`.`name` AS `name_user_type`
+FROM `cms_privilege` `pv`
+JOIN `cms_menu` `me` ON `pv`.`default_menu` = `me`.`id`
+JOIN `cms_user` `ut` ON `pv`.`id_user_type` = `ut`.`id`
+WHERE `pv`.`status` != '-1'
+ORDER BY `ut`.`name` ASC
+ LIMIT 10
+ERROR - 2018-02-21 05:02:43 --> Severity: Error --> Call to a member function num_rows() on a non-object C:\xampp\htdocs\Gmedia\app\models\backend\user-management\Model_privileges.php 82
+ERROR - 2018-02-21 05:10:59 --> Query error: Unknown column 'ut.name' in 'field list' - Invalid query: SELECT `pv`.`id`, `pv`.`name` AS `name_privilege`, `pv`.`status`, `pv`.`entry_time`, `pv`.`update_time`, `me`.`name` AS `name_menu`, `ut`.`name` AS `name_user_type`
+FROM `cms_privilege` `pv`
+JOIN `cms_menu` `me` ON `pv`.`default_menu` = `me`.`id`
+JOIN `cms_user` `ut` ON `pv`.`id_user_type` = `ut`.`id`
+WHERE `pv`.`status` != '-1'
+ORDER BY `ut`.`name` ASC
+ LIMIT 10
+ERROR - 2018-02-21 05:10:59 --> Severity: Error --> Call to a member function num_rows() on a non-object C:\xampp\htdocs\Gmedia\app\models\backend\user-management\Model_privileges.php 82
+ERROR - 2018-02-21 05:13:58 --> Query error: Unknown column 'ut.name' in 'field list' - Invalid query: SELECT `pv`.`id`, `pv`.`name` AS `name_privilege`, `pv`.`status`, `pv`.`entry_time`, `pv`.`update_time`, `me`.`name` AS `name_menu`, `ut`.`name` AS `name_user_type`
+FROM `cms_privilege` `pv`
+JOIN `cms_menu` `me` ON `pv`.`default_menu` = `me`.`id`
+JOIN `cms_user` `ut` ON `pv`.`id_user_type` = `ut`.`id`
+WHERE `pv`.`status` != '-1'
+ORDER BY `ut`.`name` ASC
+ LIMIT 10
+ERROR - 2018-02-21 05:13:59 --> Severity: Error --> Call to a member function num_rows() on a non-object C:\xampp\htdocs\Gmedia\app\models\backend\user-management\Model_privileges.php 82
+ERROR - 2018-02-21 05:15:12 --> Severity: Error --> Class 'Model_privileges' not found C:\xampp\htdocs\Gmedia\sys_ci_3.0\core\Loader.php 305
+ERROR - 2018-02-21 05:20:16 --> Severity: Error --> Class 'Model_privileges' not found C:\xampp\htdocs\Gmedia\sys_ci_3.0\core\Loader.php 305
+ERROR - 2018-02-21 05:22:31 --> Severity: Error --> Class 'Model_privileges' not found C:\xampp\htdocs\Gmedia\sys_ci_3.0\core\Loader.php 305
+ERROR - 2018-02-21 05:24:29 --> Query error: Unknown column 'pv.default_menu' in 'on clause' - Invalid query: SELECT COUNT(1) AS count
+FROM `cms_privilege` `p`
+JOIN `cms_menu` `m` ON `pv`.`default_menu` = `m`.`id`
+JOIN `cms_user` `ut` ON `p`.`id_user_type` = `ut`.`id`
+WHERE `p`.`status` != '-1'
+ERROR - 2018-02-21 05:24:29 --> Severity: Error --> Call to a member function result_array() on a non-object C:\xampp\htdocs\Gmedia\app\models\backend\user-management\Model_privileges.php 50
+ERROR - 2018-02-21 05:26:05 --> Query error: Unknown column 'ut.name' in 'field list' - Invalid query: SELECT `p`.`id`, `p`.`name` AS `name_privilege`, `p`.`status`, `p`.`entry_time`, `p`.`update_time`, `m`.`name` AS `name_menu`, `ut`.`name` AS `name_user_type`
+FROM `cms_privilege` `p`
+JOIN `cms_menu` `m` ON `p`.`default_menu` = `m`.`id`
+JOIN `cms_user` `ut` ON `p`.`id_user_type` = `ut`.`id`
+WHERE `p`.`status` != '-1'
+ORDER BY `u`.`name` ASC
+ LIMIT 10
+ERROR - 2018-02-21 05:26:05 --> Severity: Error --> Call to a member function num_rows() on a non-object C:\xampp\htdocs\Gmedia\app\models\backend\user-management\Model_privileges.php 84
+ERROR - 2018-02-21 05:27:00 --> Query error: Unknown column 'ut.name' in 'field list' - Invalid query: SELECT `p`.`id`, `p`.`name` AS `name_privilege`, `p`.`status`, `p`.`entry_time`, `p`.`update_time`, `m`.`name` AS `name_menu`, `ut`.`name` AS `name_user_type`
+FROM `cms_privilege` `p`
+JOIN `cms_menu` `m` ON `p`.`default_menu` = `m`.`id`
+JOIN `cms_user` `ut` ON `p`.`id_user_type` = `ut`.`id`
+WHERE `p`.`status` != '-1'
+ORDER BY `u`.`name` ASC
+ LIMIT 10
+ERROR - 2018-02-21 05:27:00 --> Severity: Error --> Call to a member function num_rows() on a non-object C:\xampp\htdocs\Gmedia\app\models\backend\user-management\Model_privileges.php 84

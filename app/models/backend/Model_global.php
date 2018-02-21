@@ -1,12 +1,12 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Model_global extends MY_Model 
+class model_global extends MY_Model 
  {
 	public function __construct()
 	 {
 		parent::__construct();
-		$this->laodDbCms();
+		$this->loadDbCms();
 	 }
 	/*-------------------------------------------------------------------------------------------------*/
 	#cek status insert/update

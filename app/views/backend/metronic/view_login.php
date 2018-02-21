@@ -45,7 +45,7 @@
 <body class="login">
 <!-- BEGIN LOGO -->
 <div class="logo">
-	<a href="backend/login">
+	<a href="index.html">
 	<img src="assets/images/logo-big.png" alt=""/>
 	</a>
 </div>
