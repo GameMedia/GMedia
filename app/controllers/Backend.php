@@ -60,7 +60,7 @@ class backend extends MY_Controller_Public {
 											'id'			=>$ruser['id'],
 											'id_employee'	=>$ruser['id_employee'],
 											'account_id'	=>$ruser['account_id'],
-											'name_employe'	=>$ruser['name_employee'],
+											'name_employee'	=>$ruser['name_employee'],
 											'id_user_type'	=>$ruser['id_user_type'],
 											'name_user_type'=>$ruser['name_user_type'],
 											'username'		=>$ruser['username'],

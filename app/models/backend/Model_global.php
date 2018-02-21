@@ -77,9 +77,9 @@ class model_global extends MY_Model
 	/*-------------------------------------------------------------------------------------------------*/
 	public function update($table,$paramsData=array(),$paramsKey=array(),$db='dbCms')
 	 {
-	 	$update_by= $this->profile['id'];
-	 	$update_time= date('Y-m-d H:i:s');
-	 	$update= array();
+	 	$update_by = $this->profile['id'];
+	 	$update_time = date('Y-m-d H:i:s');
+	 	$update = array();
 	 	foreach ($paramsData as $key => $value) 
 	 	{
 	 		if(is_array($value))
@@ -93,7 +93,7 @@ class model_global extends MY_Model
 	 			}
 	 		}else
 	 		{
-	 			$update[$key] = $this->$db->escape_str($val);
+	 			$update[$key] = $this->$db->escape_str($value);
 	 		}
 	 	}
 	 	$update['update_by'] = $this->$db->escape_str($update_by);
@@ -104,11 +104,11 @@ class model_global extends MY_Model
 	 		$this->$db->where($key, $this->$db->escape_str($value));
 	 	}
 	 	$this->$db->update($table, $update);
-	 	$result=array();
-	 	$dbResponse=$this->$db->error();
+	 	$result = array();
+	 	$dbResponse = $this->$db->error();
 	 	if($dbResponse['code']==0)
 	 	{
-	 		$result['succes']= true;
+	 		$result['success']= true;
 	 		$result['title']=DB_TITLE_UPDATE;
 	 		$result['message']=DB_SUCCESS_UPDATE;
 	 	}else

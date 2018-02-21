@@ -100,7 +100,7 @@ class Employees extends MY_Controller_Admin {
 	 	{
 	 		$table 		= 'cms_employee';
 	 		$tableuser 	= 'cms_user';
-	 		$this->load->model('backend/model_globals');
+	 		$this->load->model('backend/model_global');
 	 		$params 	= $_POST;
 	 		$paramsData	= array(
 	 						'name'		=> $params['name'],
@@ -109,10 +109,10 @@ class Employees extends MY_Controller_Admin {
 	 						'phone'		=> $params['phone'],
 	 						'status'	=> $params['status']);
 	 		$paramsKey	= array('id'	=> $params['id']);
-	 		$result		= $this->model_globals->checkUI($table, $paramsData, $paramsKey);
+	 		$result		= $this->model_global->checkUI($table, $paramsData, $paramsKey);
 	 		if($result)
 	 		{
-				$result = $this->model_globals->update($table, $paramsData, $paramsKey);
+				$result = $this->model_global->update($table, $paramsData, $paramsKey);
 	 			#cek update userdata
 	 			if($result['success'])
 	 			{
@@ -133,17 +133,17 @@ class Employees extends MY_Controller_Admin {
 											'status'		=> $params['status']);		
 	 				}
 	 				$paramsKeyUser = array('id_employee' => $params['id']);
-	 				$this->model_globals->update($tableuser, $ParamsDataUser, $paramsKeyUser);
+	 				$this->model_global->update($tableuser, $ParamsDataUser, $paramsKeyUser);
 	 			}
 	 			$paramsAct = array(
 	 							'id_user'	=>$this->profile['id'],
-	 							'action'	=>ACTION_HISTORY_UPDATE,
+	 							'actions'	=>ACTION_HISTORY_UPDATE,
 	 							'data'		=>($result['success'])?json_encode($params):'',
 	 							'result'	=>json_encode($result));
 	 			$this->addActHistory($paramsAct);
 	 		}else
 	 		{
-	 			$result	= $this->model_globals->insert($table, $paramsData);
+	 			$result	= $this->model_global->insert($table, $paramsData);
 	 			#cek untuk insert userdata
 	 			if($result['success'])
 	 			{
@@ -154,12 +154,12 @@ class Employees extends MY_Controller_Admin {
 	 									'username'		=> $params['username'],
 	 									'userpass'		=> md5($params['password']),
 	 									'status'		=> $params['status']);
-	 				$this->model_globals->insert($tableuser, $ParamsDataUser);
+	 				$this->model_global->insert($tableuser, $ParamsDataUser);
 	 			}
 	 			#add action history
 	 			$paramsAct = array(
 	 							'id_user'	=>	$this->profile['id'],
-	 							'action'	=>	ACTION_HISTORY_SAVE,
+	 							'actions'	=>	ACTION_HISTORY_SAVE,
 	 							'data'		=>	($result['success'])?json_encode($params):'',
 	 							'result'	=> json_encode($result));
 		 		$this->addActHistory($paramsAct);

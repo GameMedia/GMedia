@@ -18,7 +18,7 @@ class Model_backend_login extends MY_Model {
 	public function auth($_username)
 	{
 		$this->dbCms->select('us.id, us.id_employee, us.id_user_type, us.id_privilege, us.username, us.userpass, us.status AS status_user');
-		$this->dbCms->select('em.name AS name_employe, em.account_id, em.email, em.avatar_thumb, em.status AS status_employee');
+		$this->dbCms->select('em.name AS name_employee, em.account_id, em.email, em.avatar_thumb, em.status AS status_employee');
 		$this->dbCms->select('ut.name AS name_user_type, ut.isAdmin, ut.status AS status_user_type');
 		$this->dbCms->from($this->tableuser.' us');
 		$this->dbCms->join($this->tableusertype.' ut','us.id_user_type = ut.id');
@@ -38,7 +38,7 @@ class Model_backend_login extends MY_Model {
 				$result['username']			= $row['username'];
 				$result['userpass']			= $row['userpass'];
 				$result['status_user']		= $row['status_user'];
-				$result['name_employe'] 	= $row['name_employe'];
+				$result['name_employee'] 	= $row['name_employee'];
 				$result['account_id']		= $row['account_id'];
 				$result['email']			= $row['email'];
 				$result['avatar_thumb']		= $row['avatar_thumb'];
