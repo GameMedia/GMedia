@@ -7,12 +7,13 @@ class backend extends MY_Controller_Public {
 		parent::__construct();
 	
 	}
-	
+	 /*-------------------------------------------------------------------------------------------------*/
 	public function index()
 	{	
 		redirect($this->data['base_url_index'].'backend/login', 'location', 301);
 	}
-	
+	 /*-------------------------------------------------------------------------------------------------*/
+
 	public function login()
 	{		
 		#Checking is user logged in
@@ -20,6 +21,7 @@ class backend extends MY_Controller_Public {
 		$this->data['pageTitle'] = 'Login';
 		$this->load->view("backend/metronic/view_login", $this->data);
 	}
+	 /*-------------------------------------------------------------------------------------------------*/
 
 	public function auth()
 	{
@@ -32,6 +34,25 @@ class backend extends MY_Controller_Public {
 		#post request
 		$_username = $this->input->post('username');
 		$_password = $this->input->post('password');
+		/* Captcha aktif di live
+		$_captcha  = $this->input->post('g-recaptcha-response');
+		$response = array();  #cek captcha
+		if(!$_captcha)
+		{
+			$response['status'] = false;
+			$response['message'] = 'Please Check the CAPTCHA!!';
+			echo json_encode($response);
+			exit;
+		}
+		$captchaCheck = $this->captchaverify($_captcha);
+		if(!$captchaCheck)
+		{
+			$response['status'] = false;
+			$response['message'] = 'Please check the CAPTCHA!!';
+			echo json_encode($response);
+			exit;
+		}*/
+
 		#load model backend
 		$this->load->model('model_backend_login');
 		#getting data username
@@ -92,6 +113,7 @@ class backend extends MY_Controller_Public {
 		echo json_encode($response);
 	}
 
+ 	/*-------------------------------------------------------------------------------------------------*/
 
 
 

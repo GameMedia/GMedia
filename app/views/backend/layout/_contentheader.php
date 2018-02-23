@@ -21,14 +21,11 @@
 			<!-- /.modal -->
 			
 			<!-- BEGIN PAGE HEADER-->
-			<!--<h3 class="page-title">
-			<?php echo $pageTitle;?> <small>reports & statistics</small>
-			</h3>-->
 			<div class="page-bar">
 				<ul class="page-breadcrumb">
 					<li>
 						<i class="fa fa-home"></i>
-						<a href="">Home</a>
+						Home
 						<i class="fa fa-angle-right"></i>
 					</li>
 					<?php 
@@ -43,7 +40,7 @@
 							} else {
 					?>
 						  <li>
-							<a href="<?php echo ($i==0)?'':$_SERVER['REQUEST_URI'];?>"><?php echo $parentList['name'][$i];?></a>
+							<?php echo $parentList['name'][$i];?></a>
 							<?php if($i!=0){ ?>
 							<i class="fa fa-angle-right"></i>  
 							<?php }?>
@@ -53,20 +50,5 @@
 						}
 					}?>
 				</ul>
-				<!--<ul class="page-breadcrumb">
-					<li>
-						<i class="fa fa-home"></i>
-						<a href="">Home</a>
-						<i class="fa fa-angle-right"></i>
-					</li>
-					<li>
-						<a href="#">Dashboard</a>
-					</li>
-				</ul>
-				<div class="page-toolbar">
-					<div id="dashboard-report-range" class="pull-right tooltips btn btn-fit-height grey-salt" data-placement="top" data-original-title="Change dashboard date range">
-						<i class="icon-calendar"></i>&nbsp; <span class="thin uppercase visible-lg-inline-block"></span>&nbsp; <i class="fa fa-angle-down"></i>
-					</div>
-				</div>-->
 			</div>
 			<!-- END PAGE HEADER-->

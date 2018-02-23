@@ -20,8 +20,8 @@ class Model_privilege_menu extends MY_Model
 			$result = array();
 					
 			$this->dbCms->select('me.id, me.name, me.parent, me.url, me.status, me.sort, me.icon');
-			$this->dbCms->select('(SELECT sort FROM '.$this->tableMenu.' WHERE parent=me.parent AND me.sort > sort ORDER BY sort ASC LIMIT 1) AS sort_up');
-			$this->dbCms->select('(SELECT sort FROM '.$this->tableMenu.' WHERE parent=me.parent AND me.sort < sort ORDER BY sort ASC LIMIT 1) AS sort_down');
+			//$this->dbCms->select('(SELECT sort FROM '.$this->tableMenu.' WHERE parent=me.parent AND me.sort > sort ORDER BY sort ASC LIMIT 1) AS sort_up');
+			//$this->dbCms->select('(SELECT sort FROM '.$this->tableMenu.' WHERE parent=me.parent AND me.sort < sort ORDER BY sort ASC LIMIT 1) AS sort_down');
 			$this->dbCms->select('(SELECT COUNT(1) FROM '.$this->tableMenu.' WHERE parent = me.id AND status != "-1") AS child');
 			$this->dbCms->from($this->tableMenu.' me');
 			$this->dbCms->where('me.status !=', '-1');
@@ -57,12 +57,9 @@ class Model_privilege_menu extends MY_Model
 					$result['rows'][$level][$i]['parent'] = $row['parent'];
 					$result['rows'][$level][$i]['url'] = $row['url'];
 					$result['rows'][$level][$i]['status'] = $row['status'];
-					$result['rows'][$level][$i]['sort'] = $row['sort'];
 					$result['rows'][$level][$i]['level'] = $level;
 					$result['rows'][$level][$i]['icon'] = $row['icon'];
 					$result['rows'][$level][$i]['child'] = $row['child'];
-					$result['rows'][$level][$i]['sort_up'] = $row['sort_up'];
-					$result['rows'][$level][$i]['sort_down'] = $row['sort_down'];
 					$result['rows'][$level][$i]['id_privilege'] = isset($row['id_privilege'])?$row['id_privilege']:'';;
 					$result['rows'][$level][$i]['name_privilege'] = isset($row['name_privilege'])?$row['name_privilege']:'';
 					$result['rows'][$level][$i]['access'] = isset($row['access'])?$row['access']:'0';
@@ -90,8 +87,8 @@ class Model_privilege_menu extends MY_Model
 			$result = array();
 					
 			$this->dbCms->select('me.id, me.name, me.parent, me.url, me.status, me.sort, me.icon');
-			$this->dbCms->select('(SELECT sort FROM '.$this->tableMenu.' WHERE parent=me.parent AND me.sort > sort ORDER BY sort ASC LIMIT 1) AS sort_up');
-			$this->dbCms->select('(SELECT sort FROM '.$this->tableMenu.' WHERE parent=me.parent AND me.sort < sort ORDER BY sort ASC LIMIT 1) AS sort_down');
+			//$this->dbCms->select('(SELECT sort FROM '.$this->tableMenu.' WHERE parent=me.parent AND me.sort > sort ORDER BY sort ASC LIMIT 1) AS sort_up');
+			//$this->dbCms->select('(SELECT sort FROM '.$this->tableMenu.' WHERE parent=me.parent AND me.sort < sort ORDER BY sort ASC LIMIT 1) AS sort_down');
 			$this->dbCms->select('(SELECT COUNT(1) FROM '.$this->tableMenu.' WHERE parent = me.id AND status != "-1") AS child');
 			$this->dbCms->from($this->tableMenu.' me');
 			$this->dbCms->where('me.status !=', '-1');
@@ -129,11 +126,11 @@ class Model_privilege_menu extends MY_Model
 					$result[$i]['parent'] = $row['parent'];
 					$result[$i]['url'] = $row['url'];
 					$result[$i]['status'] = $row['status'];
-					$result[$i]['sort'] = $row['sort'];
+					//$result[$i]['sort'] = $row['sort'];
 					$result[$i]['level'] = $level;
 					$result[$i]['child'] = $row['child'];
-					$result[$i]['sort_up'] = $row['sort_up'];
-					$result[$i]['sort_down'] = $row['sort_down'];
+					//$result[$i]['sort_up'] = $row['sort_up'];
+					//$result[$i]['sort_down'] = $row['sort_down'];
 					$result[$i]['icon'] = $row['icon'];
 					$result[$i]['id_privilege'] = isset($row['id_privilege'])?$row['id_privilege']:'';
 					$result[$i]['name_privilege'] = isset($row['name_privilege'])?$row['name_privilege']:'';

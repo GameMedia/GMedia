@@ -83,12 +83,10 @@
 											<option value="0">Inactive</option>
 										</select>
 									</td>
-									<td>
+									<td><center>
 										<div class="margin-bottom-5">
-											<button class="btn btn-sm yellow filter-submit margin-bottom" title="Search"><i class="fa fa-search"></i></button>
-											<button class="btn btn-sm red filter-cancel" title="Reset" onclick="clearSearchForm()"><i class="fa fa-times"></i></button>
-										</div>
-										
+											<button class="btn btn-sm blue filter-submit margin-bottom" title="Search">Search</button>
+											</div></center>
 									</td>
 								</tr>
 								</thead>

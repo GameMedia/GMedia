@@ -70,8 +70,19 @@ class MY_Controller extends CI_Controller
     	$onclick="deleteID='".$id."', deleteUrl='".$url."', deleteDataTable='".$datatable."'";
     	return '<button class="btn red btn-xs margin-bottom" title="'.$title.'" onclick="'.$onclick.'" data-target="#formDelete" data-toggle="modal"><i class="'.$icon.'"></i></button>';
      }
-    /*-------------------------------------------------------------------------------------------------*/
+    /*-------------------------------------------------------------------------------------------------
+    protected function captchaVerify($_captcha)
+     {
+     	$url = GOOGLE_RECAPTCHA_VERIFY;
+     	$url = str_replace('{RECAPTCHA_RESPONSE}', $_captcha, $url);
+     	$url = str_replace('{IP-ADDRESS}', $_SERVER['REMOTE_ADDR'], $url);
 
+     	$captchaCheck = json_decode(file_get_contents($url), true);
+     	if($captchaCheck['success'])
+     		return true;
+     	return false;
+     }
 
+    -------------------------------------------------------------------------------------------------*/
 
 }
