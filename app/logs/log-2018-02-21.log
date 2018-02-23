@@ -249,3 +249,4 @@ ERROR - 2018-02-21 11:33:37 --> Query error: Unknown column 'ip' in 'field list'
 ERROR - 2018-02-21 11:33:53 --> Query error: Unknown column 'ip' in 'field list' - Invalid query: INSERT INTO `cms_action_history` (`id`, `id_user`, `url`, `actions`, `data`, `result`, `ip`, `entry_by`, `entry_time`) VALUES ('20180221113353127', '1', 'user-management/employees', 'Delete', '{\\\"id\\\":\\\"6\\\"}', '{\\\"success\\\":true,\\\"title\\\":\\\"Deleting Data\\\",\\\"message\\\":\\\"Data has been deleted.\\\"}', '::1', '1', '2018-02-21 11:33:53')
 ERROR - 2018-02-21 11:34:13 --> 404 Page Not Found: user-management/Account/index
 ERROR - 2018-02-21 11:34:23 --> 404 Page Not Found: user-management/Account/index
+ERROR - 2018-02-21 11:40:53 --> 404 Page Not Found: /index

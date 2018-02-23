@@ -16,12 +16,13 @@ class privileges extends MY_Controller_Admin {
 		#LoadMenu
 		$this->loadMenu();
 		$this->data['user_type'] = $this->model_user_type->loadUser_TypeSelect();
+		$this->data['sortedMenu'] = $this->loadMenuSelect(array('parent' => '0'));
 		$this->data['pageTitle'] = 'Privileges';
 		$this->data['pageTemplate'] = 'user-management/view_privileges';
 		$this->load->view($this->folderLayout.'main', $this->data);
 	 }
 	/*-------------------------------------------------------------------------------------------------*/
-	public function loadPrivileges()
+	public function loadPrivileges()  #menampilkan data privilege tabel utama
 	 {
 		$this->isAjax(404);
 		$result = array();
@@ -53,7 +54,7 @@ class privileges extends MY_Controller_Admin {
 	 }
 
 	/*-------------------------------------------------------------------------------------------------*/
-	public function loadPrivilegesSelect()
+	public function loadPrivilegesSelect()	#load privilege pada menu popup
 	 {
 		$this->isAjax(404);
 		if(sizeof($_POST)){
@@ -65,7 +66,8 @@ class privileges extends MY_Controller_Admin {
 	 }
 
 	/*-------------------------------------------------------------------------------------------------*/
-	public function loadMenuSelect($params = array())
+	public function loadMenuSelect($params = array())  #load default menu pada popup
+
 	 {
 		$this->load->model('backend/user-management/model_privilege_menu');
 		if(sizeof($_POST))	
@@ -73,10 +75,10 @@ class privileges extends MY_Controller_Admin {
 			
 		$result = $this->model_privilege_menu->loadMenuSelect($params);
 		$result = $this->makeListMenu($result);
-			
+		
 		if ($this->input->is_ajax_request()){
 			echo json_encode($result);
-		} else 
+		}else 
 			return $result;
 	 }
 
@@ -88,7 +90,7 @@ class privileges extends MY_Controller_Admin {
 		if(sizeof($_POST)){
 			$table = 'cms_privilege';
 			$tablePrivilegeMenu = 'cms_privilege_menu';
-			$this->load->model('backend/model_globals');
+			$this->load->model('backend/model_global');
 			
 			$params = $_POST;
 			
@@ -103,10 +105,10 @@ class privileges extends MY_Controller_Admin {
 								'id' 			=> $params['id']
 								);
 			
-			$result = $this->model_globals->save($table, $paramsData, $paramsKey);
+			$result = $this->model_global->checkUI($table, $paramsData, $paramsKey);
 			
 			if($result){
-				$result = $this->model_globals->update($table, $paramsData, $paramsKey);
+				$result = $this->model_global->update($table, $paramsData, $paramsKey);
 				
 				$paramsAct = array(
 									'id_user' 	=> $this->profile['id'],
@@ -116,21 +118,24 @@ class privileges extends MY_Controller_Admin {
 								  );
 				$this->addActHistory($paramsAct);
 			} else {
-				$result = $this->model_globals->insert($table, $paramsData);
+				$result = $this->model_global->insert($table, $paramsData);
 				
 				if($result['success']){
 					#Get All Menu And Insert into table privilege
 					$this->load->model('backend/user-management/model_privilege_menu');
 					$dataMenu = $this->model_privilege_menu->getMenuAll();
-					foreach($dataMenu as $key => $val){
-						$paramsAct = array(
-										'id_privilege' 	=> $result['id'],
-										'id_menu' 		=> $val['id'],
-										'access' 		=> '0',
-										'status' 		=> $val['status']
-									   );
-						$this->model_globals->insert($tablePrivilegeMenu, $paramsAct);
+					if($dataMenu['count']){
+						foreach($dataMenu['rows'] as $key => $val){
+							$paramsAct = array(
+											'id_privilege' 	=> $result['id'],
+											'id_menu' 		=> $val['id'],
+											'access' 		=> '0',
+											'status' 		=> $val['status']
+										   );
+							$this->model_global->insert($tablePrivilegeMenu, $paramsAct);
+						}	
 					}
+					
 				}
 				
 				#Adding to Action History
@@ -155,7 +160,7 @@ class privileges extends MY_Controller_Admin {
 		
 		if(sizeof($_POST)){
 			$table = 'cms_privilege';
-			$this->load->model('backend/model_globals');
+			$this->load->model('backend/model_global');
 			
 			$params = $_POST;
 			
@@ -167,7 +172,7 @@ class privileges extends MY_Controller_Admin {
 								'id' 			=> $params['id']
 								);
 			
-			$result = $this->model_globals->delete($table, $paramsData, $paramsKey);
+			$result = $this->model_global->delete($table, $paramsData, $paramsKey);
 			
 			#Adding to Action History
 			$paramsAct = array(
