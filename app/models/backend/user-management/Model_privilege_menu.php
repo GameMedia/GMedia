@@ -16,7 +16,7 @@ class Model_privilege_menu extends MY_Model
 		/*-------------------------------------------------------------------------------------------------*/
 
 		public function loadMenuSelect($params = array())
-		{
+	 	 {
 			$result = array();
 					
 			$this->dbCms->select('me.id, me.name, me.parent, me.url, me.status, me.sort, me.icon');
@@ -79,11 +79,11 @@ class Model_privilege_menu extends MY_Model
 			}
 			
 			return $result;
-		}
+		 }
 		/*-------------------------------------------------------------------------------------------------*/
 
 		public function loadMenuChildSelect($params = array(), $paramsPost = array())
-		{
+		 {
 			$result = array();
 					
 			$this->dbCms->select('me.id, me.name, me.parent, me.url, me.status, me.sort, me.icon');
@@ -143,11 +143,11 @@ class Model_privilege_menu extends MY_Model
 				$result['message'] = DB_NULL_RESULT;
 			}
 			return $result;
-		}
+		 }
 		/*-------------------------------------------------------------------------------------------------*/
 
 		public function getMenuAll($params = array())
-		{
+		 {
 			$this->dbCms->select('id, url, name, description, icon, parent, status');
 			$this->dbCms->from($this->tableMenu);
 			$query = $this->dbCms->get();
@@ -168,7 +168,124 @@ class Model_privilege_menu extends MY_Model
 					$i++;
 				}
 			}
-		}
+		 }
+
+		/*-------------------------------------------------------------------------------------------------*/
+		public function savePrivilege_Menu($params = array())
+		 {
+			$this->dbCms->select('id');
+			$this->dbCms->from($this->tableMenu);
+			$this->dbCms->where('id', $this->dbCms->escape_str($params['id']));
+			$data = $this->dbCms->get();
+			if($data->num_rows() != 0)
+			{
+				$result =  true;
+			}else
+			{
+				$result = false;
+			}
+			return $result;
+		 }
+
+		/*-------------------------------------------------------------------------------------------------*/
+		public function insertPrivilege_Menu($params)
+		 {
+			$result = array();
+			$where = "parent='".$params['parent']."'";
+			if($params['parent'] == '')
+			$where = "parent='0'";
+			$select = "SELECT 
+						(SELECT COUNT(1) FROM ".$this->tableMenu." WHERE parent='".$params['parent']."') AS sort, level 
+					FROM ".$this->tableMenu." 
+					WHERE ".$where." ORDER BY sort DESC LIMIT 1";
+			$query = $this->dbCms->query($select);
+			$sort = 0;
+			$level = 1;
+				if($query->num_rows() !=0)
+				{
+					foreach ($query->result_array() as $row) 
+					{
+						$sort = $row['sort'];
+						$level = $row['level']+1;
+					}
+				}
+
+			$input_by = $this->profile['id'];
+			$input_time = date('Y-m-d H:i:s');
+			$insert = array(
+						'url'	=> $this->dbCms->escape_str($params['url']),
+						'name'	=> $this->dbCms->escape_str($params['name']),
+						'description'	=> $this->dbCms->escape_str($params['description']),
+						'icon'	=> $this->dbCms->escape_str($params['icon']),
+						'parent'=> $this->dbCms->escape_str($params['parent']),
+						'sort'	=> $this->dbCms->escape_str($sort+1),
+						'level'	=> $this->dbCms->escape_str($level),
+						'status'=> $this->dbCms->escape_str($params['status']),
+						'entry_by'		=> $this->dbCms->escape_str($input_by),
+						'entry_time'	=> $this->dbCms->escape_str($input_time));
+			$this->dbCms->insert($this->tableMenu, $insert);
+			
+			$dbResponse = $this->dbCms->error();		
+			if($dbResponse['code'] == 0)
+			{
+				#Insert into privilege_menu
+				$idMenu = $this->dbCms->insert_id();
+				$this->dbCms->select('id, status');
+				$this->dbCms->from($this->tablePrivilege);
+				$query = $this->dbCms->get();
+				
+				$i=0;
+				if($query->num_rows() != 0){
+					foreach($query->result_array() as $row) 
+					{
+						$insertPM = array(
+										'id_privilege' => $this->dbCms->escape_str($row['id']),
+										'id_menu' => $this->dbCms->escape_str($idMenu),
+										'access' => $this->dbCms->escape_str('0'),
+										'status' => $this->dbCms->escape_str($row['status']),
+										'entry_by' => $this->dbCms->escape_str($input_by),
+										'entry_time' => $this->dbCms->escape_str($input_time));
+						$this->dbCms->insert($this->tablePrivilege_Menu, $insertPM);
+					}
+				}			
+				$result['success'] = true;
+				$result['title'] = DB_TITLE_SAVE;
+				$result['message'] = DB_SUCCESS_SAVE;
+			} else
+			{
+				$result['success'] = false;
+				$result['title'] = DB_TITLE_SAVE;
+				$result['message'] = $dbResponse['message'];
+			}
+			return $result;
+		 }
+
+		/*-------------------------------------------------------------------------------------------------*/
+		public function deletePrivilege_Menu($params)
+		 {
+		 	$delete = array('status' => $this->dbCms->escape_str("-1"));
+			$this->dbCms->where('id', $this->dbCms->escape_str($params['id']));
+			$this->dbCms->update($this->tableMenu, $delete);		
+			$result = array();
+			$dbResponse = $this->dbCms->error();		
+			if($dbResponse['code'] == 0)
+			{
+				$result['success'] = true;
+				$result['title'] = DB_TITLE_UPDATE;
+				$result['message'] = DB_SUCCESS_UPDATE;
+			} else 
+			{
+				$result['success'] = false;
+				$result['title'] = DB_TITLE_UPDATE;
+				$result['message'] = $dbResponse['message'];
+			}
+			return $result;
+		 }
+		
+
+
+		/*-------------------------------------------------------------------------------------------------*/
+
  }
 
 /* End of file Model_privilege_menu.php */

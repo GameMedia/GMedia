@@ -397,3 +397,28 @@ ERROR - 2018-02-23 09:14:55 --> Severity: Notice --> Undefined offset: 3 C:\xamp
 ERROR - 2018-02-23 09:14:55 --> Severity: Notice --> Undefined offset: 3 C:\xampp\htdocs\Gmedia\app\core\MY_Controller_Admin.php 168
 ERROR - 2018-02-23 09:14:55 --> Severity: Notice --> Undefined offset: 3 C:\xampp\htdocs\Gmedia\app\core\MY_Controller_Admin.php 169
 ERROR - 2018-02-23 09:14:55 --> Severity: Notice --> Undefined offset: 3 C:\xampp\htdocs\Gmedia\app\core\MY_Controller_Admin.php 172
+ERROR - 2018-02-23 09:17:57 --> Severity: Notice --> Undefined index: rows C:\xampp\htdocs\Gmedia\app\core\MY_Controller_Admin.php 131
+ERROR - 2018-02-23 09:18:19 --> Severity: Notice --> Undefined index: rows C:\xampp\htdocs\Gmedia\app\core\MY_Controller_Admin.php 131
+ERROR - 2018-02-23 09:33:27 --> Severity: Error --> Call to undefined method Model_privilege_menu::savePrivilege_Menu() C:\xampp\htdocs\Gmedia\app\controllers\user-management\Privilege_menu.php 78
+ERROR - 2018-02-23 09:42:45 --> Severity: Error --> Call to undefined method Model_privilege_menu::insertPrivilege_Menu() C:\xampp\htdocs\Gmedia\app\controllers\user-management\Privilege_menu.php 94
+ERROR - 2018-02-23 10:04:37 --> Severity: Parsing Error --> syntax error, unexpected ')' C:\xampp\htdocs\Gmedia\app\models\backend\user-management\Model_privilege_menu.php 200
+ERROR - 2018-02-23 10:06:17 --> Severity: Parsing Error --> syntax error, unexpected ''entry_time'' (T_CONSTANT_ENCAPSED_STRING), expecting ')' C:\xampp\htdocs\Gmedia\app\models\backend\user-management\Model_privilege_menu.php 225
+ERROR - 2018-02-23 10:08:02 --> Query error: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'parent='2') AS sort, level
+							FROM cms_menu
+							WHERE parent='2' ORDER BY' at line 1 - Invalid query: SELECT(SELECT COUNT(1) FROMcms_menuWHERE parent='2') AS sort, level
+							FROM cms_menu
+							WHERE parent='2' ORDER BY sort DESC LIMIT 1
+ERROR - 2018-02-23 10:08:02 --> Severity: Error --> Call to a member function num_rows() on a non-object C:\xampp\htdocs\Gmedia\app\models\backend\user-management\Model_privilege_menu.php 204
+ERROR - 2018-02-23 10:17:33 --> Query error: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'parent='2') AS sort, level
+							FROM cms_menu
+							WHERE parent='2' ORDER BY' at line 1 - Invalid query: SELECT(SELECT COUNT(1) FROMcms_menuWHERE parent='2') AS sort, level
+							FROM cms_menu
+							WHERE parent='2' ORDER BY sort DESC LIMIT 1
+ERROR - 2018-02-23 10:17:34 --> Severity: Error --> Call to a member function num_rows() on a non-object C:\xampp\htdocs\Gmedia\app\models\backend\user-management\Model_privilege_menu.php 204
+ERROR - 2018-02-23 10:23:27 --> Query error: Unknown column 'ip' in 'field list' - Invalid query: INSERT INTO `cms_action_history` (`id`, `id_user`, `url`, `actions`, `data`, `result`, `ip`, `entry_by`, `entry_time`) VALUES ('201802231023267281', '1', 'user-management/privilege_menu', 'Save', '{\\\"id\\\":\\\"\\\",\\\"name\\\":\\\"koooooooop\\\",\\\"description\\\":\\\"\\\",\\\"url\\\":\\\"koooooooopqq\\\",\\\"icon\\\":\\\"icon-bell\\\",\\\"parent\\\":\\\"2\\\",\\\"status\\\":\\\"1\\\"}', '{\\\"success\\\":true,\\\"title\\\":\\\"Saving Data\\\",\\\"message\\\":\\\"Data has been saved.\\\"}', '::1', '1', '2018-02-23 10:23:26')
+ERROR - 2018-02-23 10:24:50 --> 404 Page Not Found: user-management/Privilege_menu/setAccess
+ERROR - 2018-02-23 10:34:21 --> Severity: Error --> Maximum execution time of 30 seconds exceeded C:\xampp\htdocs\Gmedia\sys_ci_3.0\database\drivers\mysqli\mysqli_driver.php 221
+ERROR - 2018-02-23 10:34:40 --> 404 Page Not Found: Koooooooopqq/index
+ERROR - 2018-02-23 10:36:18 --> Severity: Error --> Call to undefined method Model_privilege_menu::deletePrivilege_Menu() C:\xampp\htdocs\Gmedia\app\controllers\user-management\Privilege_menu.php 129
+ERROR - 2018-02-23 10:37:13 --> 404 Page Not Found: user-management/Privilege_menu/setAccess
+ERROR - 2018-02-23 10:47:50 --> Query error: Unknown column 'ip' in 'field list' - Invalid query: INSERT INTO `cms_action_history` (`id`, `id_user`, `url`, `actions`, `data`, `result`, `ip`, `entry_by`, `entry_time`) VALUES ('201802231047500417', '1', 'user-management/privilege_menu', 'Delete', '{\\\"id\\\":\\\"191\\\"}', '{\\\"success\\\":true,\\\"title\\\":\\\"Updating Data\\\",\\\"message\\\":\\\"Data has been updated.\\\"}', '::1', '1', '2018-02-23 10:47:50')

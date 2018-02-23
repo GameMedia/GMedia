@@ -82,7 +82,6 @@
 									<td>
 										<div class="margin-bottom-5">
 											<button class="btn btn-sm blue filter-submit margin-bottom" title="Search">Search</button>
-											
 										</div>
 										
 									</td>
