@@ -23,8 +23,10 @@ class Privilege_menu extends MY_Controller_Admin {
 		$this->data['pageTemplate'] = 'user-management/view_privilege_menu';
 		$this->load->view($this->folderLayout.'main', $this->data);
 	 }
+	 
 	/*-------------------------------------------------------------------------------------------------*/
-	public function loadPrivilege_Menu(){
+	public function loadPrivilege_Menu()
+	 {
 		$this->isAjax(404);
 		$result = array();
 		$params = $_POST;
@@ -54,7 +56,8 @@ class Privilege_menu extends MY_Controller_Admin {
 		$result["recordsTotal"] = $data['total'];
 		$result["recordsFiltered"] = $data['total'];
 		echo json_encode($result);
-	}
+	 }
+	
 	/*-------------------------------------------------------------------------------------------------*/
 	public function loadMenuSelect($params = array())
 	 {
@@ -68,6 +71,7 @@ class Privilege_menu extends MY_Controller_Admin {
 		} else 
 			return $result;
 	 }
+	
 	/*-------------------------------------------------------------------------------------------------*/
 	public function savePrivilege_Menu()
 	 {
@@ -86,6 +90,7 @@ class Privilege_menu extends MY_Controller_Admin {
 		}
 
 	 }
+
 	/*-------------------------------------------------------------------------------------------------*/
 	private function insertPrivilege_Menu($params)
 	 {
@@ -103,6 +108,7 @@ class Privilege_menu extends MY_Controller_Admin {
 			return $result;
 		}
 	 }
+
 	/*-------------------------------------------------------------------------------------------------*/
 	private function updatePrivilege_Menu($params)
 	 {
@@ -118,8 +124,8 @@ class Privilege_menu extends MY_Controller_Admin {
 			return $result;
 		}
 	 }
-	/*-------------------------------------------------------------------------------------------------*/
 
+	/*-------------------------------------------------------------------------------------------------*/
 	public function deletePrivilege_Menu()
 	 {
 		$this->isAjax(404);
@@ -150,6 +156,26 @@ class Privilege_menu extends MY_Controller_Admin {
 			$result = $this->model_privilege_menu->getPrivilege_MenuData($params);
 			echo json_encode($result);
 		}
+	 }
+
+	/*-------------------------------------------------------------------------------------------------*/
+	public function setAccess()
+	 {
+	 	$this->isAjax(404);
+	 	if(isset($_POST))
+	 	{
+	 		$params = $_POST;
+	 		$result = $this->model_privilege_menu->setAccess($params);
+
+	 		#add history
+	 		$paramsAct = array(
+	 						'id_user'	=> $this->profile['id'],
+	 						'actions'	=> ACTION_HISTORY_SAVE,
+	 						'data'		=> ($result['success'])? json_encode($params):'',
+	 						'result'	=> json_encode($result));
+	 		$this->addActHistory($paramsAct);
+	 		echo json_encode($result);
+	 	}
 	 }
 
 	/*-------------------------------------------------------------------------------------------------*/

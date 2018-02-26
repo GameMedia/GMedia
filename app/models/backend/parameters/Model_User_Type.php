@@ -1,16 +1,20 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-class model_user_type extends MY_Model {
+class model_user_type extends MY_Model 
+{
 
 	private $tableUser_Type = 'cms_user_type';
 	private $tableUser = 'cms_user';
 
-	public function __construct () {
-		parent::__construct();
-		
+	/*-------------------------------------------------------------------------------------------------*/ 
+	public function __construct () 
+	{
+		parent::__construct();	
 		$this->loadDbCms();
 	}
-	
-	public function loadUser_Type($params){
+
+	/*-------------------------------------------------------------------------------------------------*/ 
+	public function loadUser_Type($params)
+	 {
 		$result = array();
 		
 		$columnOrder = array(
@@ -79,9 +83,11 @@ class model_user_type extends MY_Model {
 			$result['message'] = DB_NULL_RESULT;
 		}
 		return $result;
-	}
-	
-	public function loadUser_TypeSelect(){
+	 }
+
+	/*-------------------------------------------------------------------------------------------------*/ 
+	public function loadUser_TypeSelect()
+	 {
 		$result = array();
 				
 		$this->dbCms->select('id, name');
@@ -103,9 +109,11 @@ class model_user_type extends MY_Model {
 			$result['message'] = DB_NULL_RESULT;
 		}
 		return $result;
-	}
+	 }
 	
-	public function getUser_TypeData($params){
+	/*-------------------------------------------------------------------------------------------------*/ 
+	public function getUser_TypeData($params)
+	 {
 		$this->dbCms->select('id, name, isAdmin, status, entry_time, update_time');
 		$this->dbCms->select('(SELECT username FROM '.$this->tableUser.' WHERE id = ut.entry_by AND status = 1) AS entry_by');
 		$this->dbCms->select('(SELECT username FROM '.$this->tableUser.' WHERE id = ut.update_by AND status = 1) AS update_by');
@@ -131,6 +139,7 @@ class model_user_type extends MY_Model {
 			$result['message'] = DB_NULL_RESULT;
 		}
 		return $result;
-	}
+	 }
+	 
 }
 ?>

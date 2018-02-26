@@ -169,8 +169,8 @@ class Model_privilege_menu extends MY_Model
 				}
 			}
 		 }
-
 		/*-------------------------------------------------------------------------------------------------*/
+
 		public function savePrivilege_Menu($params = array())
 		 {
 			$this->dbCms->select('id');
@@ -186,8 +186,8 @@ class Model_privilege_menu extends MY_Model
 			}
 			return $result;
 		 }
-
 		/*-------------------------------------------------------------------------------------------------*/
+
 		public function insertPrivilege_Menu($params)
 		 {
 			$result = array();
@@ -259,8 +259,8 @@ class Model_privilege_menu extends MY_Model
 			}
 			return $result;
 		 }
-
 		/*-------------------------------------------------------------------------------------------------*/
+
 		public function deletePrivilege_Menu($params)
 		 {
 		 	$delete = array('status' => $this->dbCms->escape_str("-1"));
@@ -281,11 +281,128 @@ class Model_privilege_menu extends MY_Model
 			}
 			return $result;
 		 }
-		
-
-
 		/*-------------------------------------------------------------------------------------------------*/
 
+		public function setAccess($params)
+		 {
+		 	$this->dbCms->select('access');
+		 	$this->dbCms->from($this->tablePrivilege_Menu);
+		 	$this->dbCms->where('id_privilege', $params['privilege']);
+		 	$this->dbCms->where('id_menu', $params['menu']);
+		 	$query = $this->dbCms->get();
+
+		 	if($query->num_rows() == 0)
+		 	{
+				$result['success'] = false;
+				$result['title'] = DB_TITLE_UPDATE;
+				$result['message'] = DB_NULL_RESULT;
+				return $result;
+			}
+			foreach ($query->result_array() as $row) 
+			{
+				$access = $row['access'];
+			}	
+			$n = (int) $params['access'] & (int) $access;
+			$newAccess = ($n==0)?$access+$params['access']:$access-$params['access'];
+			$query = "UPDATE ".$this->tablePrivilege_Menu." SET access=".$newAccess." WHERE id_menu=".$params['menu']." AND id_privilege=".$params['privilege'];
+		
+			$this->dbCms->query($query);
+			$dbResponse = $this->dbCms->error();		
+			if($dbResponse['code'] == 0){
+				$result['success'] = true;
+				$result['title'] = DB_TITLE_UPDATE;
+				$result['message'] = DB_SUCCESS_UPDATE;
+			} else {
+				$result['success'] = false;
+				$result['title'] = DB_TITLE_UPDATE;
+				$result['message'] = $dbResponse['message'];
+			}
+			return $result;
+		 }
+
+		 /*-------------------------------------------------------------------------------------------------*/
+		 //view pop up privilage menu
+		 public function getPrivilege_MenuData($params)  
+		  {
+		  	$this->dbCms->select('id,url,name,description,icon, parent,status');
+		  	$this->dbCms->from($this->tableMenu);
+		  	$this->dbCms->where('id',$this->dbCms->escape_str($params['id']));
+
+		  	$query = $this->dbCms->get();
+		  	$result = array();
+		  	if($query->num_rows() !=0)
+		  	{
+		  		$result['count'] = true;
+		  		foreach ($query->result_array() as $row) 
+		  		{
+		  			$result['id'] = $row['id'];
+		  			$result['url'] = $row['url'];
+		  			$result['name'] = $row['name'];
+		  			$result['description'] = $row['description'];
+		  			$result['icon'] = $row['icon'];
+		  			$result['parent'] = $row['parent'];
+		  			$result['status'] = (int) $row['status'];
+		  		}
+		  	} else
+		  	{
+		  		$result['count'] = true;
+		  		$result['title'] = DB_TITLE_RESULT;
+		  		$result['message'] = DB_NULL_RESULT;
+		  	}
+		  	return $result;
+		  }
+		  /*-------------------------------------------------------------------------------------------------*/
+
+		  public function updatePrivilege_Menu($params)
+		   {
+		   		$update_by = $this->profile['id'];
+		   		$update_time = date('Y-m-d H:i:s');
+
+		   		#mengambil sort terakhir
+		   		$where = "id='".$params['parent']."'";
+		   		if ($params['parent'] == '')
+		   			$where = "parent='0'";
+		   		$select = "SELECT level 
+		   					From ".$this->tableMenu."
+		   					WHERE ".$where." ORDER BY sort DESC LIMIT 1";
+		   		$query = $this->dbCms->query($select);
+		   		$level = 1;
+		   		if($query->num_rows() !=0)
+		   		{
+		   			foreach ($query->result_array() as $row) 
+		   			{
+		   				$level = $row['level']+1;
+		   			}
+		   		}
+
+		   		$update = array(
+		   					'url' => $this->dbCms->escape_str($params['url']),
+		   					'name' => $this->dbCms->escape_str($params['name']),
+		   					'description' => $this->dbCms->escape_str($params['description']),
+		   					'icon' => $this->dbCms->escape_str($params['icon']),
+		   					'parent' => $this->dbCms->escape_str($params['parent']),
+		   					'level' => $this->dbCms->escape_str($level),
+		   					'status' => $this->dbCms->escape_str($params['status']),
+		   					'update_by' => $this->dbCms->escape_str($update_by),
+		   					'update_time' => $this->dbCms->escape_str($update_time));
+		   		$this->dbCms->where('id',$this->dbCms->escape_str('id'));
+		   		$this->dbCms->update($this->tableMenu, $update);
+
+		   		$result = array();
+		   		$dbResponse = $this->dbCms->error();
+		   		if($dbResponse['code'] == 0)
+		   		{
+		   			$result['success'] = true;
+		   			$result['title'] = DB_TITLE_UPDATE;
+		   			$result['message'] = DB_SUCCESS_UPDATE;
+		   		} else
+		   		{
+		   			$result['success'] = false;
+		   			$result['title'] = DB_TITLE_UPDATE;
+		   			$result['message'] = $dbResponse['message'];
+		   		}
+		   		return $result;
+		   }
  }
 
 /* End of file Model_privilege_menu.php */
