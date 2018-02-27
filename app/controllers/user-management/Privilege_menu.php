@@ -73,30 +73,30 @@ class Privilege_menu extends MY_Controller_Admin {
 	 }
 	
 	/*-------------------------------------------------------------------------------------------------*/
-	public function savePrivilege_Menu()
+	public function cekUI_PM()
 	 {
 		$this->isAjax(404);
 		
 		if(sizeof($_POST)){
 			$params = $_POST;
-			$result = $this->model_privilege_menu->savePrivilege_Menu($params);
+			$result = $this->model_privilege_menu->cekUI_PM($params);
 			
 			if($result)
 			{
-				$result = $this->updatePrivilege_Menu($params);
+				$result = $this->update_PM($params);
 			} else
-				$result = $this->insertPrivilege_Menu($params);
+				$result = $this->insert_PM($params);
 			echo json_encode($result);
 		}
 
 	 }
 
 	/*-------------------------------------------------------------------------------------------------*/
-	private function insertPrivilege_Menu($params)
+	private function insert_PM($params)
 	 {
 		if(is_array($params))
 		{
-			$result = $this->model_privilege_menu->insertPrivilege_Menu($params);
+			$result = $this->model_privilege_menu->insert_PM($params);
 			#simpan history
 			$paramsAct = array(
 								'id_user' 	=> $this->profile['id'],
@@ -110,10 +110,10 @@ class Privilege_menu extends MY_Controller_Admin {
 	 }
 
 	/*-------------------------------------------------------------------------------------------------*/
-	private function updatePrivilege_Menu($params)
+	private function update_PM($params)
 	 {
 		if(is_array($params)){
-			$result = $this->model_privilege_menu->updatePrivilege_Menu($params);
+			$result = $this->model_privilege_menu->update_PM($params);
 			$paramsAct = array(
 								'id_user' 	=> $this->profile['id'],
 								'actions' 	=> ACTION_HISTORY_UPDATE,
@@ -126,13 +126,13 @@ class Privilege_menu extends MY_Controller_Admin {
 	 }
 
 	/*-------------------------------------------------------------------------------------------------*/
-	public function deletePrivilege_Menu()
+	public function delete_PM()
 	 {
 		$this->isAjax(404);
 		if(sizeof($_POST))
 		{
 			$params = $_POST;
-			$result = $this->model_privilege_menu->deletePrivilege_Menu($params);
+			$result = $this->model_privilege_menu->delete_PM($params);
 			#Simpan history
 			$paramsAct = array(
 								'id_user' 	=> $this->profile['id'],

@@ -45,7 +45,7 @@
 										<input type="text" class="form-control form-filter input-sm" id="search_name" name="search_name" placeholder="Search by Name">
 									</td>
 									<td>
-										<select name="search_isAdmin" id="search_isAdmin" class="form-control form-filter input-sm">
+										<select name="search_isAdmin" id="search_isAdmin" class="form-control form-filter input-sm">	
 											<option value="">- All -</option>
 											<option value="1">Yes</option>
 											<option value="0">No</option>
@@ -74,6 +74,7 @@
 					</div>
 				</div>
 				<!--</div>-->
+				<!-- ===================================================================== --> 
 				<!-- /.modal -->
 				<div id="formAdd" class="modal fade" tabindex="-1" data-backdrop="static" data-width="400" data-keyboard="false" data-attention-animation="true">
 					<div class="modal-dialog">

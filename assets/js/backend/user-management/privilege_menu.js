@@ -29,7 +29,7 @@ function loadPrivilege_Menu(){
 													edit = '<button onclick="view(\''+data.rows[i]['id']+'\')" style="cursor:pointer" class="btn btn-xs" data-target="#formAdd" data-toggle="modal" title="View Data"><span class="fa fa-search"></span></button>';
 												var del='';
 												if(accessDelete=='1')
-													del = '<a data-toggle="modal" href="#formDelete" onclick="deleteID=\''+data.rows[i]['id']+'\', deleteUrl=\'user-management/privilege_menu/deletePrivilege_Menu\', deleteDataTable=\'table-append\'" style="cursor:pointer" class="btn red btn-xs" title="Delete Data"><span class="fa fa-trash-o"></span></a>';
+													del = '<a data-toggle="modal" href="#formDelete" onclick="deleteID=\''+data.rows[i]['id']+'\', deleteUrl=\'user-management/privilege_menu/delete_PM\', deleteDataTable=\'table-append\'" style="cursor:pointer" class="btn red btn-xs" title="Delete Data"><span class="fa fa-trash-o"></span></a>';
 												
 												var sort_up = '';
 												if(data.rows[i]['sort_up'] != null){
@@ -157,7 +157,7 @@ function save(){
     var success = $('.alert-success-save', form);
 		
 	jQuery.ajax({
-			url:  domain+"user-management/privilege_menu/savePrivilege_Menu",
+			url:  domain+"user-management/privilege_menu/cekUI_PM",
 			dataType: "json",
 			type: "POST",
 			data: {

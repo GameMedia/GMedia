@@ -13,6 +13,7 @@ class Usertype extends MY_Controller_Admin {
 	 {
 		//loadMenu
 		$this->loadMenu();
+		
 		$this->data['pageTitle'] = 'User Type';
 		$this->data['pageTemplate'] = 'parameters/view_user_type';
 		$this->load->view($this->folderLayout.'main', $this->data);
@@ -63,7 +64,7 @@ class Usertype extends MY_Controller_Admin {
 	 	}
 	 }
 
-	/*-------------------------------------------------------------------------------------------------
+	/*-------------------------------------------------------------------------------------------------*/
 	public function deleteUser_Type()
 	 {
 	 	$this->isAjax(404);
@@ -72,13 +73,59 @@ class Usertype extends MY_Controller_Admin {
 	 		$table = 'cms_user_type';
 	 		$this->load->model('backend/model_global');
 	 		$params = $_POST;
-	 		$paramsdata = array('status'	=> '-1');
-	 		$paramsKey = array('id'		=>$params['id'])
+	 		$paramsData = array('status'	=> '-1');
+	 		$paramsKey = array('id'		=>$params['id']);
+
+	 		$result = $this->model_global->delete($table, $paramsData, $paramsKey);
+	 		//add action history
+	 		$paramsAct = array(
+	 						'id_user'	=> $this->profile['id'],
+	 						'actions'	=> ACTION_HISTORY_DELETE,
+	 						'data'		=> ($result['success'])?json_encode($params):'',
+	 						'result'	=> json_encode($result));
+	 		$this->addActHistory($paramsAct);
+	 		echo json_encode($result);
 	 	}
 	 }
 
-	-------------------------------------------------------------------------------------------------*/
+	/*-------------------------------------------------------------------------------------------------*/
+	public function saveUser_Type()
+	 {
+	 	$this->isAjax(404);
+	 	if(sizeof($_POST))
+	 	{
+	 		$table = 'cms_user_type';
+	 		$this->load->model('backend/model_global');
+	 		$params = $_POST;
+	 		$paramsData = array(
+	 						'name'		=> $params['name'],
+	 						'isAdmin'	=> $params['isAdmin'],
+	 						'status'	=> $params['status']);
+	 		$paramsKey = array('id'		=> $params['id']);
+	 		$result = $this->model_global->checkUI($table, $paramsData, $paramsKey);
 
+	 		if($result)
+	 		{
+	 			$result = $this->model_global->update($table, $paramsData, $paramsKey);
+	 			$paramsAct = array (
+	 							'id_user'	=> $this->profile['id'],
+	 							'actions'	=> ACTION_HISTORY_UPDATE,
+	 							'data'		=> ($result['success'])?json_encode($params):'',
+	 							'result'	=> json_encode($result));
+	 			$this->addActHistory($paramsAct);
+	 		} else
+	 		{
+	 			$result = $this->model_global->insert($table, $paramsData);
+	 			$paramsAct = array (
+	 							'id_user'	=> $this->profile['id'],
+	 							'actions'	=> ACTION_HISTORY_SAVE,
+	 							'data'		=> ($result['success'])? json_encode($params):'',
+	 							'result'	=> json_encode($result));
+	 			$this->addActHistory($paramsAct);
+	 		}
+	 		echo json_encode($result);
+	 	}
+	 }
 
 	/*-------------------------------------------------------------------------------------------------*/
 

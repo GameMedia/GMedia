@@ -69,7 +69,7 @@ class model_global extends MY_Model
 		{
 			$result['success']=false;
 			$result['title']=DB_TITLE_SAVE;
-			$result['message']=$dbResponse['massage'];
+			$result['message']=$dbResponse['message'];
 		}
 		return $result;
 	 }

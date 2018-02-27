@@ -46,21 +46,6 @@
 										 Actions
 									</th>
 								</tr>
-								<tr role="row" class="filter">
-									<td></td>
-									<td>
-										<input type="text" class="form-control form-filter input-sm" id="search_id" name="search_id" placeholder="Search by Code">
-									</td>
-									<td>
-										<input type="text" class="form-control form-filter input-sm" id="search_value" name="search_value" placeholder="Search by Value">
-									</td>
-									<td>
-										<div class="margin-bottom-5">
-											<button class="btn btn-sm yellow filter-submit margin-bottom" title="Search"><i class="fa fa-search"></i></button>
-											<button class="btn btn-sm red filter-cancel" title="Reset" onclick="clearSearchForm()"><i class="fa fa-times"></i></button>
-										</div>
-									</td>
-								</tr>
 								</thead>
 								<tbody>
 								</tbody>
@@ -147,12 +132,5 @@
 			bootstrapMultiselect("colList");
 		});
 		
-		/*jQuery(document).ready(function() {	
-			FormValidation.init();
-			TableAjax.init();
-			UIToastr.init();
-			
-			$("#isAdmin").bootstrapSwitch();
-		});*/
     </script>
 	<?php $this->load->view($folderLayout.'_modal');?>
