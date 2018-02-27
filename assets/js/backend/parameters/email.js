@@ -47,7 +47,7 @@ function save(){
     var success = $('.alert-success-save', form);
 		
 	jQuery.ajax({
-			url:  domain+"parameters/email/saveEmail",
+			url:  domain+"parameters/email/checkUI_Em",
 			dataType: "json",
 			type: "POST",
 			data: {

@@ -41,7 +41,7 @@ class MY_Controller_Admin extends MY_Controller {
 
 	 	if(!isset($_sessProfile))
 	 	{
-	 		if($this->input->is_ajax_reques())
+	 		if($this->input->is_ajax_request())
 	 		{
 	 			echo json_encode(array('succes'=>'out','url'=>$this->data['base_url_index'].$this->folder));
 	 			die();
