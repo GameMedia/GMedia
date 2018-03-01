@@ -69,8 +69,9 @@ class MY_Controller_Admin extends MY_Controller {
 			return false;
 		}
 
-		$_modelMenu=$this->load->model('model_menu');
+		$this->load->model('model_menu');
 		$this->data['parentList']		=$this->model_menu->loadParentList($this->uri_string,$_sessPrivilege['privilege_id']);
+		
 		$this->data['menu']				=$this->model_menu->loadMenu($_sessPrivilege['menu']);
 		$this->data['pageTitle']		=$this->data['parentList']['name'][0];
 		$this->data['pageDescription']	=$this->data['parentList']['description'][0];

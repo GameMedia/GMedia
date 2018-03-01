@@ -142,7 +142,7 @@ class model_email extends MY_Model
 	 	if($query->num_rows() != 0)
 	 	{
 	 		$result['count'] = true;
-	 		foreach ($query->result_array as $row) 
+	 		foreach ($query->result_array() as $row) 
 	 		{
 	 			$result['rows'][$i]['id'] = $row['id'];
 	 			$result['rows'][$i]['name'] = $row['name'];

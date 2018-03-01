@@ -106,11 +106,72 @@ class Model_email_template extends MY_Model
 		}
 		return $result;
 	 }
+
 	/*-------------------------------------------------------------------------------------------------*/
+	public function getEmail_TemplateData($params)
+	 {
+	 	$this->dbCms->select('id, name, id_email, code, title, content, status');
+	 	$this->dbCms->from($this->tableEmail_Template);
+	 	$this->dbCms->where('id', $this->dbCms->escape_str($params['id']));
+	 	$query = $this->dbCms->get();
+	 	$result = array();
+	 	if($query->num_rows() !=0)
+	 	{
+	 		$result['count'] = true;
+	 		foreach ($query->result_array() as $row) 
+	 		{
+	 			$result['id'] = $row['id'];
+	 			$result['name'] = $row['name'];
+	 			$result['code'] = $row['code'];
+	 			$result['title'] = $row['title'];
+	 			$result['content'] = html_entity_decode(htmlspecialchars_decode($row['content']));
+	 			$result['id_email'] = $row['id_email'];
+	 			$result['status'] = (int) $row['status'];
+	 		}
+	 	} else
+	 	{
+	 		$result['count'] = false;
+	 		$result['title'] = DB_TITLE_RESULT;
+	 		$result['message'] = DB_NULL_RESUL;
+	 	}
+	 	return $result;
+	 }
+	 
+	/*-------------------------------------------------------------------------------------------------*/
+	public function loadEmail_TemplateSelect($params)
+	 {
+	 	$result = array();
+
+	 	$this->dbCms->select('id, name');
+	 	$this->dbCms->from($this->tableEmail_Template);
+	 	$this->dbCms->where('status','1');
+	 	$this->dbCms->order_by('name', 'ASC');
+		
+		if(isset($params['id_query']))
+			$this->dbCms->where('id_user_type', $params['id_query']);
+		
+		$query = $this->dbCms->get();
+		$i=0;
+		if($query->num_rows() != 0)
+		{
+			$result['count'] = true;
+			foreach($query->result_array() as $row) 
+			{
+				$result['rows'][$i]['id'] = $row['id'];
+				$result['rows'][$i]['name'] = $row['name'];
+				$i++;
+			}
+		} else 
+		{
+			$result['count'] = false;
+			$result['title'] = DB_TITLE_RESULT;
+			$result['message'] = DB_NULL_RESULT;
+		}
+		return $result;
+	 }
 
 	/*-------------------------------------------------------------------------------------------------*/
 
-	/*-------------------------------------------------------------------------------------------------*/
 
 	/*-------------------------------------------------------------------------------------------------*/
 

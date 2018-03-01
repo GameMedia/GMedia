@@ -155,3 +155,9 @@ ERROR - 2018-02-27 10:00:18 --> Severity: Notice --> Undefined index: statu C:\x
 ERROR - 2018-02-27 10:01:03 --> Severity: Notice --> Undefined variable: emails C:\xampp\htdocs\Gmedia\app\views\backend\metronic\parameters\view_email_template.php 53
 ERROR - 2018-02-27 10:01:03 --> Severity: Notice --> Undefined variable: emails C:\xampp\htdocs\Gmedia\app\views\backend\metronic\parameters\view_email_template.php 112
 ERROR - 2018-02-27 10:01:58 --> 404 Page Not Found: parameters/Email_template/getEmail_TemplateData
+ERROR - 2018-02-27 11:05:47 --> Severity: Parsing Error --> syntax error, unexpected '$this' (T_VARIABLE) C:\xampp\htdocs\Gmedia\app\controllers\parameters\Email_template.php 103
+ERROR - 2018-02-27 11:06:09 --> Severity: Parsing Error --> syntax error, unexpected '$this' (T_VARIABLE) C:\xampp\htdocs\Gmedia\app\controllers\parameters\Email_template.php 112
+ERROR - 2018-02-27 11:06:40 --> Severity: Parsing Error --> syntax error, unexpected ')' C:\xampp\htdocs\Gmedia\app\controllers\parameters\Email_template.php 135
+ERROR - 2018-02-27 11:07:44 --> Severity: Parsing Error --> syntax error, unexpected ';' C:\xampp\htdocs\Gmedia\app\controllers\parameters\Email_template.php 135
+ERROR - 2018-02-27 11:09:48 --> Severity: Notice --> Undefined variable: emails C:\xampp\htdocs\Gmedia\app\views\backend\metronic\parameters\view_email_template.php 53
+ERROR - 2018-02-27 11:09:48 --> Severity: Notice --> Undefined variable: emails C:\xampp\htdocs\Gmedia\app\views\backend\metronic\parameters\view_email_template.php 112

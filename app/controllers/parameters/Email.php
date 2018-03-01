@@ -150,7 +150,7 @@ class email extends MY_Controller_Admin {
 	 	if(sizeof($_POST))
 	 	{
 	 		$params = $_POST;
-	 		$result = $this->model_email_loadEmailSelect($params);
+	 		$result = $this->model_email->loadEmailSelect($params);
 	 		echo json_encode($result);
 	 	}
 	 }
