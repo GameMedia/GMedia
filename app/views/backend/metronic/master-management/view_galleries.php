@@ -44,11 +44,18 @@
 								<tr role="row" class="filter">
 									<td></td>
 									<td>
-										<select name="search_type" id="search_type" data-required="1" class="form-control form-filter input-sm" title="Type">
+										<select name="search_id_content_type" id="search_id_content_type" class="form-control form-filter input-sm">
 											<option value="">- All Type -</option>
-											<option value="Banner">Banner</option>
-											<option value="News">News</option>
-											<option value="Team">Team</option>
+											<?php
+											if($content_types['count']){
+												for($i=0; $i<count($content_types['rows']); $i++)
+												{
+											?>	
+											<option value="<?php echo $content_types['rows'][$i]['id'];?>"><?php echo $content_types['rows'][$i]['name']; ?></option>
+											<?php	
+												}
+											}
+											?>
 										</select>
 									</td>
 									<td><input type="text" class="form-control form-filter input-sm" id="search_name" name="search_name" placeholder="Search by Name"></td>
@@ -93,12 +100,23 @@
 									  <div class="col-md-9">
 										<div class="input-icon right">
 											<i class="fa fa-exclamation tooltips" data-original-title="please write a name" data-container="body"></i>
-											<select name="type" id="type" data-required="1" class="form-control" title="Type">
-												<option value="">- Choose Type -</option>
-												<option value="Banner">Banner</option>
-												<option value="News">News</option>													
-												<option value="Team">Team</option>
-											</select>
+
+
+											<select name="id_content_type" id="id_content_type" class="form-control form-filter">
+											<option value="">- Choose Content Type -</option>
+											<?php
+											if($content_types['count']){
+												for($i=0; $i<count($content_types['rows']); $i++)
+												{
+											?>	
+											<option value="<?php echo $content_types['rows'][$i]['id'];?>"><?php echo $content_types['rows'][$i]['name']; ?></option>
+											<?php	
+												}
+											}
+											?>
+
+
+										</select>
 										</div>
 									  </div>
 									</div>
@@ -143,8 +161,7 @@
 											<!-- The global progress bar -->
 											<div id="progress" class="progress" style="margin-top:10px;">
 												<div class="progress-bar progress-bar-success"></div>
-											</div>
-											<span class="help-block" id="display-banner" style="display:none"></span>									
+											</div>									
 										</div>
 									  </div>
 									</div>	

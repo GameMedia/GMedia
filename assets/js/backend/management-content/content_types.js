@@ -45,7 +45,7 @@ function save(){
     var success = $('.alert-success-save', form);
 		
 	jQuery.ajax({
-			url:  domain+"management-content/content_types/saveContent_Types",
+			url:  domain+"management-content/content_types/checkUI_CT",
 			dataType: "json",
 			type: "POST",
 			data: {

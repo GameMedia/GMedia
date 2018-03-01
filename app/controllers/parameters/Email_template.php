@@ -106,7 +106,7 @@ class email_template extends MY_Controller_Admin {
 	 			$result = $this->model_global->insert($table, $paramsData);
 	 			$params = array(
 	 						'id_user' => $this->profile['id'],
-	 						'action' => ACTION_HISTORY_UPDATE,
+	 						'action' => ACTION_HISTORY_SAVE,
 	 						'data' => ($result['success'])?json_encode($params):'',
 	 						'result' => json_encode($result));
 	 			$this->addActHistory($paramsAct);

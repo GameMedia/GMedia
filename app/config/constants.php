@@ -121,10 +121,10 @@ define('MAIL_FORGOT_PASSWORD', 'forgot-password');
  * Define Config
  * ---------------------------------------------------------------------
  */ 
-define('WWW_ROOT', 		"/var/www/forum.indofungames.com/");
+define('WWW_ROOT', 		"/var/www/Gmedia/");
 define('BASE_CMS', 		"");
 define('BASE_API', 		"");										#GatewayCampaignManagement/API/
-define('URL_PLATFORM',	"https://forum.indofungames.com/");			#http://localhost/GatewayCampaignManagement/API/
+define('URL_PLATFORM',	"http://localhost:8080/Gmedia/");			#http://localhost/GatewayCampaignManagement/API/
 define('URL_API', 		"");										#http://localhost/GatewayCampaignManagement/API/index.php/
 define('ASSETS_CSS', 	"assets/css/");
 define('ASSETS_JS', 	"assets/js/");

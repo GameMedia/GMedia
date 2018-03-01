@@ -125,6 +125,34 @@ class Model_content_types extends MY_Model {
 	 }
 
 	/*-------------------------------------------------------------------------------------------------*/
+	public function loadContent_TypesSelect()
+	 {
+	 	$result = array();
+
+	 	$this->dbCms->select('id, name');
+	 	$this->dbCms->from($this->tableContent_Types);
+	 	$this->dbCms->where('status', '1');
+	 	$this->dbCms->order_by('name', 'ASC');
+
+	 	$query = $this->dbCms->get();
+	 	$i=0;
+	 	if($query->num_rows() != 0)
+	 	{
+	 		$result['count'] = true;
+	 		foreach ($query->result_array() as $row) 
+	 		{
+	 			$result['rows'][$i]['id'] = $row['id'];
+	 			$result['rows'][$i]['name'] = $row['name'];
+	 			$i++;
+	 		}
+	 	} else
+	 	{
+	 		$result['count'] = false;
+	 		$result['title'] = DB_TITLE_RESULT;
+	 		$result['message'] = DB_NULL_RESULT;
+	 	}
+	 	return $result;
+	 }
 
 	/*-------------------------------------------------------------------------------------------------*/
 

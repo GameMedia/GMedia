@@ -14,15 +14,14 @@ function view(id){
 										if(data.count){
 											jQuery('#id').val(data.id);
 											jQuery('#id_reference').val(data.id_reference);
-											jQuery('#type').val(data.type);
+											jQuery('#id_content_type').val(data.id_content_type);
 											jQuery('#name').val(data.name);
 											jQuery('#description').val(data.description);
-											jQuery('#path_ori').val(data.path_ori);
-											jQuery('#path_thumb').val(data.path_thumb);
+											jQuery('#path').val(data.path);
 											jQuery('#url_ori').val(data.url_ori);
 											jQuery('#url_thumb').val(data.url_thumb);
 											jQuery('#img_mime').val(data.mime_type);
-											jQuery('#display-banner').html('<img src="'+data.url+data.url_thumb+'" />').css('display','inline');
+											jQuery('#display-banner').html('<img src="'+data.url+data.url_ori+'" />').css('display','inline');
 												
 											if(data.status) {
 												jQuery('#status').attr('checked', 'checked');

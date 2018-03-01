@@ -94,7 +94,7 @@ class Globalparameter extends MY_Controller_Admin {
 	 			$result = $this->model_global->insert($table, $paramsData);
 	 			$paramsAct = array( 
 	 							'id_user' => $this->profile['id'],
-	 							'actions' => ACTION_HISTORY_UPDATE,
+	 							'actions' => ACTION_HISTORY_SAVE,
 	 							'data' => ($result['success'])? json_encode($params):'',
 	 							'result' => json_encode($result));
 	 			$this->addActHistory($paramsAct);
