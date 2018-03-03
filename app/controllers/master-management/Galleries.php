@@ -52,7 +52,7 @@ class galleries extends MY_Controller_Admin {
 	 	}
 	 	$result["draw"] = $params['draw'];
 	 	$result["recordsTotal"] = $data['total'];
-	 	$result["recordFiletered"] = $data['total'];
+	 	$result["recordsFiletered"] = $data['total'];
 	 	echo json_encode($result);
 	 }
 
@@ -79,13 +79,16 @@ class galleries extends MY_Controller_Admin {
 			$table = 'galleries';
 			$this->load->model('backend/model_global');
 			$params = $_POST;
+
+			$params['code'] = str_replace(' ', '-', strtolower($params['name']));
+			$params['code'] = preg_replace('/[^a-z 0-9~%.:_\-]+/', '-', $params['code']);
+
 			$paramsData = array(
 							'id_content_type' => $params['id_content_type'],
 							'id_reference' => $params['id_reference'],
 							'name' => $params['name'],
 							'description' => array($params['description'], true),
-							'path_ori' => $params['path_ori'],
-							'path_thumb' => $params['path_thumb'],
+							'path' => $params['path'],
 							'url_ori' => $params['url_ori'],
 							'url_thumb' => $params['url_thumb'],
 							'mime_type' => $params['mime_type'],
@@ -99,7 +102,7 @@ class galleries extends MY_Controller_Admin {
 				//act history
 				$paramsAct = array(
 								'id_user' => $this->profile['id'],
-								'action' => ACTION_HISTORY_UPDATE,
+								'actions' => ACTION_HISTORY_UPDATE,
 								'data' => ($result['success'])? json_encode($params):'',
 								'result' => json_encode($result));
 				$this->addActHistory($paramsAct);
@@ -109,7 +112,7 @@ class galleries extends MY_Controller_Admin {
 				//act history
 				$paramsAct = array(
 								'id_user' => $this->profile['id'],
-								'action' => ACTION_HISTORY_UPDATE,
+								'actions' => ACTION_HISTORY_UPDATE,
 								'data' => ($result['success'])? json_encode($params):'',
 								'result' => json_encode($result));
 				$this->addActHistory($paramsAct);
@@ -134,7 +137,41 @@ class galleries extends MY_Controller_Admin {
 	 }
 
 	/*-------------------------------------------------------------------------------------------------*/ 
+	public function deleteGalleries()
+	 {
+	 	$this->isAjax(404);
+	 	if(sizeof($_POST))
+	 	{
+	 		$table = 'galleries';
+	 		$this->load->model('backend/model_global');
+	 		$params = $_POST;
+	 		$paramsData = array('status' => '-1');
+	 		$paramsKey = array('id' => $params['id']);
+
+	 		$result = $this->model_global->delete($table, $paramsData, $paramsKey);
+
+	 		//act history
+	 		$paramsAct = array( 
+	 						'id_user' => $this->profile['id'],
+	 						'actions' => ACTION_HISTORY_DELETE,
+	 						'data' => ($result['success'])?json_encode($params):'',
+	 						'result' => json_encode($result));
+	 		$this->addActHistory($paramsAct);
+	 		echo json_encode($result);
+	 	}
+	 }
+
+	/*-------------------------------------------------------------------------------------------------*/ 
+
+
+
+	/*-------------------------------------------------------------------------------------------------*/ 
+
+
+
+	/*-------------------------------------------------------------------------------------------------*/ 
 }
 
 /* End of file galleries.php */
 /* Location: ./application/controllers/galleries.php */
+/* muhammad iqbal */

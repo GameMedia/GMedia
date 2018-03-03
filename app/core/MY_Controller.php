@@ -70,7 +70,60 @@ class MY_Controller extends CI_Controller
     	$onclick="deleteID='".$id."', deleteUrl='".$url."', deleteDataTable='".$datatable."'";
     	return '<button class="btn red btn-xs margin-bottom" title="'.$title.'" onclick="'.$onclick.'" data-target="#formDelete" data-toggle="modal"><i class="'.$icon.'"></i></button>';
      }
-    /*-------------------------------------------------------------------------------------------------
+    /*-------------------------------------------------------------------------------------------------*/
+    //list timezone
+    protected function setUtcTimezone()
+     {
+     	$setUtcTimezone = array();
+     	for($i=-12; $i<15; $i++)
+     	{
+     		if($i>0)
+     		{
+     			$timezone = ($i<10)?''.$i:$i;
+     			$utcTimezone[$i] = 'UTC +'.$timezone.'.00';
+     		} elseif ($i<0) 
+     		{
+     			$timezone = ($i<10)?''.$i:$i;
+     			$utcTimezone[$i] = 'UTC '.$timezone.'.00';
+     		} else
+     		{
+     			$timezone = ($i<10)?''.$i:$i;
+     			$utcTimezone[$i] = 'UTC';
+     		}
+     	}
+     	return $this->utcTimezone = $utcTimezone;
+     }
+	
+	/*-------------------------------------------------------------------------------------------------*/
+	protected function setTime()
+	 {
+	 	$utcTimezone = array();
+	 	for($i=0; $i<24; $i++)
+	 	{
+	 		$time = ($i<10)?'0'.$i:$i;
+	 		$utcTimezone[$i] = $time;
+	 	}
+	 	return $utcTimezone;
+	 }
+
+	/*-------------------------------------------------------------------------------------------------*/
+	protected function setYearList($yearFirst = 2015)
+	 {
+	 	$year = array();
+	 	for($i=date('Y'); $i>=$yearFirst; $i--)
+	 	{
+	 		$year[] = $i;
+	 	}
+	 	return $this->yearList = $year;
+	 }
+
+	/*-------------------------------------------------------------------------------------------------*/
+
+
+
+
+	/*-------------------------------------------------------------------------------------------------*/
+
     protected function captchaVerify($_captcha)
      {
      	$url = GOOGLE_RECAPTCHA_VERIFY;
@@ -83,6 +136,6 @@ class MY_Controller extends CI_Controller
      	return false;
      }
 
-    -------------------------------------------------------------------------------------------------*/
+    /*-------------------------------------------------------------------------------------------------*/
 
 }
