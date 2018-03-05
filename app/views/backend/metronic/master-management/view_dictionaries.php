@@ -12,10 +12,10 @@
 							<div class="actions">
 								<select id="colList" multiple="multiple" class="toggle-vis yellow-stripe">
 								  <option value="0" data-column="0" selected>Rec</option>
-								  <option value="1" data-column="1" selected>Code</option>
-								  <option value="2" data-column="2" selected>Name</option>
-								  <option value="3" data-column="3" selected>Timezone</option>
-								  <option value="4" data-column="4" selected>Phone Prefix</option>
+								  <option value="1" data-column="1" selected>Country</option>
+								  <option value="2" data-column="2" selected>Device</option>
+								  <option value="3" data-column="3" selected>Code</option>
+								  <option value="4" data-column="4" selected>Value</option>
 								  <option value="5" data-column="5" selected>Is Active?</option>
 								  <option value="6" data-column="6" selected>Action</option>
 								</select>
@@ -36,28 +36,33 @@
 								<thead>
 								<tr role="row" class="heading">
 									<th class="no-sort" width="50px">Rec.</th>
-									<th width="130px">Code</th>
-									<th>Name</th>
-									<th width="90px">Timezone</th>
-									<th width="90px">Phone Prefix</th>
-									<th width="90px">is Active?</th>
-									<th  class="no-sort" width="100px">Actions</th>
+									<th width="120px">Country</th>
+									<th width="70px">Device</th>
+									<th> Code</th>
+									<th> Value</th>
+									<th width="90px">is Active</th>
+									<th class="no-sort" widht="100px">Actions</th>
 								</tr>
 								<tr role="row" class="filter">
 									<td></td>
-									<td><input type="text" name="search_code" id="search_code" class="form-control form-filter input-sm" placeholder="Search by Code"></td>
-									<td><input type="text" class="form-control form-filter input-sm" id="search_name" name="search_name" placeholder="Search by Name"></td>
 									<td>
-										<select class="form-control form-filter input-sm" id="search_utc_timezone" name="search_utc_timezone">
-											<option value="">- Choose Timezone -</option>
+										<select class="form-control form-filter input-sm" id="search_id_country" name="search_id_country">
 											<?php 
-											foreach($utc_timezone as $key => $val){
+											foreach($countries['rows'] as $key){
 											?>
-											<option value="<?php echo $key;?>"><?php echo $val;?></option>
+											<option value="<?php echo $key['id'];?>"><?php echo $key['name'];?></option>
 											<?php } ?>
 										</select>
 									</td>
-									<td><input type="text" class="form-control form-filter input-sm" id="search_prefix" name="search_prefix" placeholder="Search by Description"></td>
+									<td>
+										<select class="form-control form-filter input-sm" id="search_device" name="search_device">
+											<option value="">- All -</option>
+											<option value="PC"> PC </option>
+											<option value="Mobile"> Mobile </option>
+										</select>
+									</td>
+									<td><input type="text" name="search_code" id="search_code" class="form-control form-filter input-sm" placeholder="Search by Code"></td>
+									<td><input type="text" name="search_value" id="search_value" class="form-control form-filter input-sm" placeholder="Search by  Value"></td>
 									<td>
 										<select name="search_status" id="search_status" class="form-control form-filter input-sm">
 											<option value="">- All -</option>
@@ -67,8 +72,8 @@
 									</td>
 									<td>
 										<div class="margin-bottom-5">
-											<button class="btn btn-sm blue filter-submit margin-bottom" title="Search">Search</button>
-										</div>
+											<button class="btn btn-sm blue filter-submit margin-bottom" title="Search" id="btn-filter-table">Search</button>
+									</div>
 										
 									</td>
 								</tr>
@@ -89,68 +94,31 @@
 								<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
 								<h4 class="modal-title"><?php echo $pageTitle;?></h4>
 							</div>
-							<form action="javascript:;" id="form_countries" class="form-horizontal">
+							<form action="javascript:;" id="form_dictionaries" class="form-horizontal">
 								<div class="modal-body">
-									<input type="hidden" name="id" id="id" readonly class="span6 m-wrap"/>									
+									<input type="hidden" name="id" id="id" readonly class="span6 m-wrap"/>
 									<div class="form-group">
-									  <label  class="col-md-3 control-label">Country Code</label>
+									  <label  class="col-md-3 control-label">Code</label>
 									  <div class="col-md-9">
 										<div class="input-icon right">
 											<i class="fa fa-exclamation tooltips" data-original-title="please write a country code" data-container="body"></i>
-											<input type="text" maxlength="2" name="code" id="code" class="form-control form-filter" title="Country Code" placeholder="Country Code">
+											<input type="text" maxlength="50" name="code" id="code" class="form-control form-filter" title="Dictionary Code" placeholder="Dictionary Code">
 										</div>
 									  </div>
 									</div>
+									<?php 
+									foreach($countries['rows'] as $key){
+									?>
 									<div class="form-group">
-									  <label  class="col-md-3 control-label">Name</label>
+									  <label  class="col-md-3 control-label">Values <?php echo $key['name'];?></label>
 									  <div class="col-md-9">
 										<div class="input-icon right">
-											<i class="fa fa-exclamation tooltips" data-original-title="please write a name" data-container="body"></i>
-											<input type="text" maxlength="50" name="name" id="name" data-required="1" class="form-control" title="Name" placeholder="Name" />
+											<i class="fa fa-exclamation tooltips" data-original-title="please write a Value <?php echo $key['name'];?>" data-container="body"></i>
+											<input type="text" maxlength="255" country="<?php echo $key['id'];?>" name="value_<?php echo $key['id'];?>" id="value_<?php echo $key['id'];?>" class="form-control country" title="<?php echo $key['name'];?>" placeholder="<?php echo $key['name'];?>" />
 										</div>
 									  </div>
 									</div>
-									<div class="form-group">
-									  <label  class="col-md-3 control-label">Phone Prefix</label>
-									  <div class="col-md-9">
-										<div class="input-icon right">
-											<input type="text" maxlength="3" name="prefix" id="prefix" class="form-control form-filter" title="Phone Prefix" placeholder="Phone Prefix">
-										</div>
-									  </div>
-									</div>
-									<div class="form-group">
-									  <label  class="col-md-3 control-label">Description</label>
-									  <div class="col-md-9">
-										<div class="input-icon right">
-											<input type="text" maxlength="255" name="description" id="description" class="form-control form-filter" title="Description" placeholder="Description">
-										</div>
-									  </div>
-									</div>
-									<div class="form-group">
-									  <label  class="col-md-3 control-label">Timezone</label>
-									  <div class="col-md-9">
-										<div class="input-icon right">
-											<select class="form-control" id="utc_timezone" name="utc_timezone">
-												<option value="">- Choose Timezone -</option>
-												<?php 
-												foreach($utc_timezone as $key => $val){
-												?>
-												<option value="<?php echo $key;?>"><?php echo $val;?></option>
-												<?php } ?>
-											</select>
-										</div>
-									  </div>
-									</div>
-									
-									<div class="form-group">
-									  <label  class="col-md-3 control-label">is Active?</label>
-									  <div class="col-md-9">
-										<div class="input-icon right">
-											<i class="fa fa-exclamation tooltips" data-original-title="please choose is Active" data-container="body"></i>
-											<input type="checkbox" id="status" name="status" class="make-switch" data-on-text="<i class='fa fa-check'></i>" data-off-text="<i class='fa fa-times'></i>">
-										</div>
-									  </div>
-									</div>
+									<?php } ?>
 								</div>
 								<div class="modal-footer">
 									<p style="float:left">Last update by <i id="update_by"></i> On <i id="update_time"></i></p>
@@ -171,7 +139,7 @@
 	<script type="text/javascript" src="assets/js/backend/datatables.js?<?php echo date("mdH");?>"></script>
     <script type="text/javascript" src="assets/js/backend/ui-toastr.js"></script>
 	
-	<script type="text/javascript" src="assets/js/backend/master-management/countries.js?<?php echo date("mdH");?>"></script>
+	<script type="text/javascript" src="assets/js/backend/master-management/dictionaries.js?<?php echo date("mdH");?>"></script>
 	<script type="text/javascript">
 		var deleteID = "",
 			deleteLangID = "";
@@ -179,18 +147,17 @@
 		jQuery(document).ready(function() {	
 			//Define Validation
 			var rules = {
-						code: {minlength: 2, maxlength: 2, required: true},
-						name: {minlength: 4,required: true}
+						code: {required: true}
 						};			
 			
-            FormValidation.init('form_countries', rules);
+            FormValidation.init('form_dictionaries', rules);
             
-			TableAjax.init("datatable", "master-management/countries/loadCountries");
+			TableAjax.init("datatable", "master-management/dictionaries/loadDictionaries");
+			loadDictionaries();
 			UIToastr.init();
 			
 			bootstrapMultiselect("colList");
 						
 		});
-
     </script>
 <?php $this->load->view($folderLayout.'_modal');?>

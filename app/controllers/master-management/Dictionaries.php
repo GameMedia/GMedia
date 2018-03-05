@@ -36,14 +36,40 @@ class dictionaries extends MY_Controller_Admin {
 	 		{
 	 			$result['data'][$i][] = $params['start'] + ($i+1);
 	 			$result['data'][$i][] = $data['rows'][$i]['name_country'];
-	 			$result['data'][$i][] = $data['rows'][$i]['id'];
-	 			$result['data'][$i][] = $data['rows'][$i]['dictionary']
+	 			$result['data'][$i][] = $data['rows'][$i]['device'];
+	 			$result['data'][$i][] = $data['rows'][$i]['code'];
+	 			$result['data'][$i][] = $data['rows'][$i]['value'];
+	 			$result['data'][$i][] = ($data['rows'][$i]['status'])?'<span class="label label-sm label-success"> Active </span>':'<span class="label label-sm label-danger"> Inactive </span>';
+				;
+	 			$buttonView = $this->createElementButtonView('view(\''.$data['rows'][$i]['id'].'\')', 'data-target="#formAdd" data-toggle="modal"');
+				
+				$buttonDelete = "";
+				if($this->data['accessDelete'])
+					$buttonDelete = $this->createElementButtonDelete($data['rows'][$i]['id'], 'master-management/dictionaries/deleteDictionaries', 'datatable');
+	 			$result['data'][$i][] = $buttonView.' '.$buttonDelete;
 	 		}
+	 	} else
+	 	{
+	 		$result['data'] = array();
 	 	}
+	 	$result["draw"] = $params['draw'];
+	 	$result["recordsTotal"] = $data['total'];
+	 	$result["recordsFiltered"] = $data['total'];
+
+	 	echo json_encode($result);
 	 }
 
 	/*-------------------------------------------------------------------------------------------------*/
-
+	public function loadDictionariesSelect()
+	 {
+	 	$this->isAjax(404);
+	 	if(sizeof($_POST))
+	 	{
+	 		$params = $_POST;
+	 		$result = $this->model_dictionaries->loadDictionariesSelect($params);
+	 		echo json_encode($result);
+	 	}
+	 }
 
 	/*-------------------------------------------------------------------------------------------------*/
 
