@@ -2,7 +2,7 @@ function loadDictionaries(){
 	jQuery("#btn-filter-table").trigger("click");
 }
 
-function view(id, id_country){
+function view(id){
 	"use strict";
 	
 	jQuery.ajax({
@@ -16,11 +16,9 @@ function view(id, id_country){
 			success: function(data) {
 										sessOut(data);
 										if(data.count){
-											for(var i=0; i<data.rows.length; i++){
-												jQuery('#value_'+data.rows[i]['id_country']).val(data.rows[i]['dictionary']);
-												jQuery('#code').val(data.rows[i]['id']);
-												jQuery('#id').val(data.rows[i]['id']);
-											}
+											jQuery('#id').val(data.id);
+											jQuery('#code').val(data.code);
+											jQuery('#value').val(data.value);
 											jQuery('#update_by').html(data.update_by);
 											jQuery('#update_time').html(data.update_time);
 										} else {

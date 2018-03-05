@@ -97,6 +97,7 @@
 							<form action="javascript:;" id="form_dictionaries" class="form-horizontal">
 								<div class="modal-body">
 									<input type="hidden" name="id" id="id" readonly class="span6 m-wrap"/>
+									
 									<div class="form-group">
 									  <label  class="col-md-3 control-label">Code</label>
 									  <div class="col-md-9">
@@ -106,19 +107,16 @@
 										</div>
 									  </div>
 									</div>
-									<?php 
-									foreach($countries['rows'] as $key){
-									?>
 									<div class="form-group">
-									  <label  class="col-md-3 control-label">Values <?php echo $key['name'];?></label>
+									  <label  class="col-md-3 control-label">Value</label>
 									  <div class="col-md-9">
 										<div class="input-icon right">
-											<i class="fa fa-exclamation tooltips" data-original-title="please write a Value <?php echo $key['name'];?>" data-container="body"></i>
-											<input type="text" maxlength="255" country="<?php echo $key['id'];?>" name="value_<?php echo $key['id'];?>" id="value_<?php echo $key['id'];?>" class="form-control country" title="<?php echo $key['name'];?>" placeholder="<?php echo $key['name'];?>" />
+											<i class="fa fa-exclamation tooltips" data-original-title="please write a country code" data-container="body"></i>
+											<input type="text" maxlength="50" name="value" id="value" class="form-control form-filter" title="" placeholder="Dictionary Value">
 										</div>
 									  </div>
 									</div>
-									<?php } ?>
+									
 								</div>
 								<div class="modal-footer">
 									<p style="float:left">Last update by <i id="update_by"></i> On <i id="update_time"></i></p>

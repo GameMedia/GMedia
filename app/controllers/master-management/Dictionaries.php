@@ -72,10 +72,43 @@ class dictionaries extends MY_Controller_Admin {
 	 }
 
 	/*-------------------------------------------------------------------------------------------------*/
-
+	public function getDictionariesData()
+	 {
+	 	$this->isAjax(404);
+	 	if(sizeof($_POST))
+	 	{
+	 		$params = $_POST;
+	 		$result = $this->model_dictionaries->getDictionariesData($params);
+	 		$result['update_by'] = empty($result['entry_by'])?$result['update_by']:$result['entry_by'];
+			$result['update_time'] = empty($result['entry_time'])?$result['update_time']:$result['entry_time'];
+	 		echo json_encode($result);
+	 	}
+	 }
 
 	/*-------------------------------------------------------------------------------------------------*/
+	public function deleteDictionaries()
+	 {
+	 	$this->isAjax(404);
+	 	if(sizeof($_POST))
+	 	{
+	 		$table = 'dictionaries';
+	 		$this->load->model('backend/modal_global');
+	 		$params = $_POST;
+	 		$paramsData = array('status' => '-1');
+	 		$paramsKey = array('id' => $params['id']);
 
+	 		$result = $this->model_global->delete($table, $paramsData, $paramsKey);
+	 		//add history
+	 		$paramsAct = array(
+	 						'id_user' => $this->profile['id'],
+	 						'actions' => ACTION_HISTORY_DELETE,
+	 						'data' => ($result['success'])?json_encode($params):'',
+	 						'result' => json_encode($result));
+	 		$this->addActHistory($paramsAct);
+
+	 		echo json_encode($result);
+	 	}
+	 }
 
 	/*-------------------------------------------------------------------------------------------------*/
 }

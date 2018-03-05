@@ -74,7 +74,7 @@ class countries extends MY_Controller_Admin {
 	 	}	
 	 }
 
-	/*-------------------------------------------------------------------------------------------------*/ 
+	/*-------------------------------------------------------------------------------------------------BUG*/ 
 	public function checkUI_CO()
 	 {
 	 	$this->isAjax(404);
@@ -106,7 +106,7 @@ class countries extends MY_Controller_Admin {
 	 		{
 	 			$result = $this->model_global->insert($table, $paramsData);
 	 			//if success save insert into dictionaries
-	 			/*
+	 			
 	 			if($result['success'])
 	 			{
 	 				$this->load->model('backend/master-management/model_dictionaries');
@@ -116,18 +116,18 @@ class countries extends MY_Controller_Admin {
 	 				if($countries['count'])
 	 					$lastCountry = $countries['rows'][0]['id'];
 
-	 				$dictionaries = $this->model_dictionaries->loadCountriesSelect(array('id_country' => $lastCountry));
+	 				$dictionaries = $this->model_dictionaries->loadDictionariesSelect(array('id_country' => $lastCountry));
 	 				if($dictionaries['count'])
 	 				{
 	 					foreach ($dictionaries['rows'] as $key) 
 	 					{
 	 						$paramsDictionary = array(
-	 											'id' => $key['id'],
-	 											'id_country' => $result['id']);
+	 											'code' => $key['code'],
+	 											'id_country' => $result['id_query']);
 	 						$this->model_global->insert('dictionaries', $paramsDictionary);
 	 					}
 	 				}
-	 			}*/
+	 			}
 
 	 			//Act hisotry
 	 			$paramsAct = array(

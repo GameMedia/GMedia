@@ -92,11 +92,12 @@ class Model_dictionaries extends MY_Model {
 		}
 		return $result;
 	 }
+
 	/*-------------------------------------------------------------------------------------------------*/ 
 	public function loadDictionariesSelect($params)
 	 {
 	 	$result = array();
-	 	$this->dbCms->select('id, value');
+	 	$this->dbCms->select('code, value');
 	 	$this->dbCms->from($this->tabledt);
 
 	 	if(isset($params['id_country']))
@@ -109,7 +110,7 @@ class Model_dictionaries extends MY_Model {
 	 		$result['count'] = true;
 	 		foreach ($query->result_array() as $row) 
 	 		{
-	 			$result['rows'][$i]['id'] = $row['id'];
+	 			$result['rows'][$i]['code'] = $row['code'];
 	 			$result['rows'][$i]['value'] = $row['value'];
 	 			$i++;
 	 		}
@@ -123,7 +124,40 @@ class Model_dictionaries extends MY_Model {
 	 }
 
 	/*-------------------------------------------------------------------------------------------------*/ 
+	public function getDictionariesData($params)
+	 {
+	 	$this->dbCms->select('id, id_country, device, code, value, status, entry_by, entry_time, update_by, update_time');
+	 	$this->dbCms->from($this->tabledt);
+	 	$this->dbCms->where('id', $this->dbCms->escape_str($params['id']));
 
+	 	$query = $this->dbCms->get();
+	 	$result = array();
+	 	if($query->num_rows() != 0)
+	 	{
+	 		$result['count'] = true;
+	 		$i=0;
+	 		foreach ($query->result_array() as $row) 
+	 		{
+	 			$result['id'] = $row['id'];
+	 			$result['id_country'] = $row['id_country'];
+	 			$result['device'] = $row['device'];
+	 			$result['code'] = $row['code'];
+	 			$result['value'] = $row['value'];
+	 			$result['status'] = $row['status'];
+	 			$result['entry_by'] = $row['entry_by'];
+	 			$result['entry_time'] = $row['entry_time'];
+	 			$result['update_by'] = $row['update_by'];
+	 			$result['update_time'] = $row['update_time'];
+	 			$i++;
+	 		}
+	 	} else
+	 	{
+	 		$result['count'] = false;
+	 		$result['title'] = DB_TITLE_RESULT;
+	 		$result['message'] = DB_NULL_RESULT;
+	 	}
+	 	return $result;
+	 }
 
 	/*-------------------------------------------------------------------------------------------------*/ 
 
