@@ -111,6 +111,31 @@ class dictionaries extends MY_Controller_Admin {
 	 }
 
 	/*-------------------------------------------------------------------------------------------------*/
+	public function saveDictionaries()
+	 {
+	 	$this->isAjax(404);
+	 	if(sizeof($_POST))
+	 	{
+	 		$table = 'dictionaries';
+	 		$this->load->model('backend/model_global');
+	 		$params = $_POST;
+
+	 		for($i=0; $i<count($params['country']); $i++)
+	 		{
+	 			$paramsData = array (
+	 							'id_country' => $params['country'][$i],
+	 							'code' => $params['code'],
+	 							'value' => $params['value'][$i]
+	 							);
+	 			$paramsKey = array(
+	 							'id'	=> empty($params['id'])?$params['code']:$params['id'],
+	 							'id_country'	=> $params['country'][$i]
+	 							);
+	 		}
+	 	}
+	 }
+
+	/*-------------------------------------------------------------------------------------------------*/
 }
 
 /* End of file dictionaries.php */
