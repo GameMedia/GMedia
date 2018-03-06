@@ -71,7 +71,7 @@ class galleries extends MY_Controller_Admin {
 	 }
 
 	/*-------------------------------------------------------------------------------------------------*/ //cek save or update 
-	public function checkUI_GA()
+	public function checkUI()
 	{
 		$this->isAjax(404);
 		if(sizeof($_POST))
@@ -79,9 +79,6 @@ class galleries extends MY_Controller_Admin {
 			$table = 'galleries';
 			$this->load->model('backend/model_global');
 			$params = $_POST;
-
-			$params['code'] = str_replace(' ', '-', strtolower($params['name']));
-			$params['code'] = preg_replace('/[^a-z 0-9~%.:_\-]+/', '-', $params['code']);
 
 			$paramsData = array(
 							'id_content_type' => $params['id_content_type'],
@@ -162,7 +159,17 @@ class galleries extends MY_Controller_Admin {
 	 }
 
 	/*-------------------------------------------------------------------------------------------------*/ 
-
+	public function uploadGalleries()
+	 {
+	 	$this->isAjax(404);
+	 	if(!isset($_GET['files']))
+	 	{
+	 		echo json_encode(array('message' => 'missing parameter', 'status' => false));
+	 		die();
+	 	}
+	 	$result = $this->upload('Image','galleries', NULL, false, 10485760);
+	 	echo json_encode($result);
+	 }
 
 
 	/*-------------------------------------------------------------------------------------------------*/ 

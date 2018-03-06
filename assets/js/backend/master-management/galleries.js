@@ -42,11 +42,10 @@ function view(id){
 function save(){
 	var id = jQuery('#id').val(),
 		id_reference = jQuery('#id_reference').val(),
-		type = jQuery('#type').val(),
+		type = jQuery('#id_content_type').val(),
 		name = jQuery('#name').val(),
 		description = jQuery('#description').val(),
-		path_ori = jQuery('#path_ori').val(),
-		path_thumb = jQuery('#path_thumb').val(),
+		path = jQuery('#path').val(),
 		url_ori = jQuery('#url_ori').val(),
 		url_thumb = jQuery('#url_thumb').val(),
 		mime_type = jQuery('#img_mime').val(),
@@ -63,11 +62,10 @@ function save(){
 			data: {
 					'id' : id,
 					'id_reference' : id_reference,
-					'type' : type,
+					'id_content_type' : id_content_type,
 					'name' : name,
 					'description' : description,
-					'path_ori' : path_ori,
-					'path_thumb' : path_thumb,
+					'path' : path,
 					'url_ori' : url_ori,
 					'url_thumb' : url_thumb,
 					'mime_type' : mime_type,
@@ -99,7 +97,7 @@ function clearSearchForm(){
 function clearForm(){
 	jQuery('#id').val('');	
 	jQuery('#id_reference').val('');
-	jQuery('#type').val('');
+	jQuery('#id_content_type').val('');
 	jQuery('#name').val('');
 	jQuery('#description').val('');
 	jQuery('#path_ori').val('');
@@ -137,8 +135,7 @@ $(function () {
 		{
 			if(data.status){
 				jQuery('#id_gallery').val('');
-				jQuery('#path_ori').val(data.files['path_ori']);
-				jQuery('#path_thumb').val(data.files['path_thumb']);
+				jQuery('#path').val(data.files['path']);
 				jQuery('#url_ori').val(data.files['url_ori']);
 				jQuery('#url_thumb').val(data.files['url_thumb']);
 				jQuery('#img_width').val(data.files['img_width']);

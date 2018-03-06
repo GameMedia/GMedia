@@ -85,7 +85,7 @@
 									  <div class="col-md-9">
 										<div class="input-icon right">
 											<i class="fa fa-exclamation tooltips" data-original-title="please write a content type code" data-container="body"></i>
-											<input type="text" maxlength="25" name="code" id="code" class="form-control form-filter" title="Content Type Code" placeholder="Content Type Code">
+											<input type="text" maxlength="25" name="code" id="code" class="form-control form-filter" title="Input required, at least 4 character" placeholder="Content Type Code">
 										</div>
 									  </div>
 									</div>
@@ -94,7 +94,7 @@
 									  <div class="col-md-9">
 										<div class="input-icon right">
 											<i class="fa fa-exclamation tooltips" data-original-title="please write a name" data-container="body"></i>
-											<input type="text" maxlength="50" name="name" id="name" data-required="1" class="form-control" title="Name" placeholder="Name" />
+											<input type="text" maxlength="50" name="name" id="name" data-required="1" class="form-control" title="Input required, at least 4 character" placeholder="Name" />
 										</div>
 									  </div>
 									</div>

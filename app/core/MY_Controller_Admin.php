@@ -201,8 +201,141 @@ class MY_Controller_Admin extends MY_Controller {
 	 }
 
 	/*-------------------------------------------------------------------------------------------------*/
+	protected function upload($type="", $config="", $user="", $resize=true, $max_size=0)
+	 {
+	 	$dirUpload = $this->config->item($config);
+	 	if(!empty($max_size))
+	 		$dirUpload['max_size'] = $max_size;
 
+	 	switch($type)
+	 	{
+	 		case "Image":
+	 			$result = array();
+	 			foreach ($_FILES as $file ) 
+	 			{
+	 				//cek file size
+	 				if($file['size']>$dirUpload['max_size'])
+	 				{
+	 					$result['message'] = $dirUpload['message_max_size'];
+	 					$result['status'] = false;
+	 				} else
+	 				{   /*--------------------------------------------------------
+	 					//cek folder is exists
+	 					if(!empty($user))
+	 					{
+	 						$dirUpload['path_ori'] = str_replace('{user}', $user, $dirUpload['path_ori']);
+	 						$dirUpload['path_thumb'] = str_replace('{user}', $user, $dirUpload['path_thumb']);
+	 						$dirUpload['url_ori'] = str_replace('{user}', $user, $dirUpload['path_ori']);
+	 						$dirUpload['url_thumb'] = str_replace('{user', $user, $dirUpload['path_thumb']);
+	 						if(!file_exists(str_replace('{user}', $user, $dirUpload['path_ori'])))
+	 						{
+	 							mkdir($dirUpload['path_ori'], 0777);
+	 							mkdir($dirUpload['path_thumb'], 0777);
+	 						}
+	 					} -------------------------------------------------------*/
+	 					$pathInfo = pathinfo($file['name']);
+	 					$physicName = md5(date("YmdHis")).'.'.$pathInfo['extension'];
 
+	 					//upload original file
+	 					if(move_uploaded_file($file['tmp_name'], $dirUpload['path']))
+	 					{			
+							$result['files']['path'] 	= $dirUpload['path'];
+							$result['files']['url_ori'] 	= $dirUpload['url_ori'].$physicName;
+							$result['files']['file_name'] 	= $physicName;
+							$result['files']['img_mime'] 	= mime_content_type($dirUpload['path_ori'].$physicName);
+							$imageSize = getimagesize($dirUpload['path_ori'].$physicName);
+							$result['files']['img_width'] 	= $imageSize[0];
+							$result['files']['img_height'] 	= $imageSize[1];
+							$result['status'] 				= true;
+							$result['icon'] 				= $dirUpload['url'].$dirUpload['url_ori'].$physicName;
+	 					} else
+	 					{
+	 						$result['error'] 	= 'Uploading error.';
+							$result['status'] 	= false;
+	 					}
+
+	 					#resize to thumb file
+	 					if($result['status'])
+	 					{
+							if($resize)
+							{
+								//identitas file asli  
+								if ($file['type']=="image/jpeg" ){
+									$im_src = imagecreatefromjpeg($dirUpload['path'].$physicName);
+								} elseif ($file['type']=="image/png" ){
+									$im_src = imagecreatefrompng($dirUpload['path'].$physicName);
+								}elseif ($file['type']=="image/gif" ){
+									$im_src = imagecreatefromgif($dirUpload['path'].$physicName);
+								}elseif ($file['type']=="image/wbmp" ){
+									$im_src = imagecreatefromwbmp($dirUpload['path'].$physicName);
+								}
+								
+								$src_width = imageSX($im_src);
+								$src_height = imageSY($im_src);
+		 						//simpan dalam versi small 110 pixel
+		 						$dst_width = 100;
+								$dst_height = ($dst_width/$src_width)*$src_height;
+		 						//proses ubah ukuran
+		 						$im = imagecreatetruecolor($dst_width,$dst_height);
+									imagecopyresampled($im, $im_src, 0, 0, 0, 0, $dst_width, $dst_height, $src_width, $src_height);
+
+		 						//simpan gambar
+		 						if ($file['type']=="image/jpeg" ){
+										imagejpeg($im, $dirUpload['path'].$physicName);
+									} elseif ($file['type']=="image/png" ){
+										imagepng($im, $dirUpload['path'].$physicName);
+									} elseif ($file['type']=="image/gif" ){
+										imagegif($im, $dirUpload['path'].$physicName);
+									} elseif($file['type']=="image/wbmp" ){
+										imagewbmp($im, $dirUpload['path'].$physicName);
+									}
+
+		 						$result['files']['url_thumb'] 	= $dirUpload['url_thumb'].$physicName;
+								$result['files']['path_thumb'] 	= $dirUpload['path_thumb'].$physicName;
+								$result['icon'] = $dirUpload['url'].$dirUpload['url_thumb'].$physicName;
+		 						//hapus gambar di memori komputer
+		 						imagedestroy($im_src);
+		 						imagedestroy($im);
+	 						}
+	 					}
+	 				}
+	 			}
+	 	break;
+	 	default:
+	 		$result = array();
+	 		foreach ($_FILES as $file) 
+	 		{
+	 			#cek file size
+	 			if($file['size'] > $dirUpload['max_size'])
+	 			{
+	 				$result['message'] = $dirUpload['message_max_size'];
+	 				$result['status'] = false;
+	 			} else
+	 			{
+	 				$dirUpload['path'] = $dirUpload['path'];
+	 				$dirUpload['url_ori'] = $dirUpload['url_ori'];
+	 				$pathinfo = pathinfo($file['name']);
+	 				$physicName = md5(date("YmdHis")).'.'.$pathInfo['extension'];
+	 				$physicName = $file['name'];
+		 			//upload original file
+		 			if(move_uploaded_file($file['tmp_name'], $dirUpload['path'].$physicName))
+		 			{
+		 				$result['files']['path'] = $dirUpload['path'];
+		 				$result['files']['url_ori'] = $dirUpload['url_ori'].$physicName;
+		 				$result['files']['file_name'] = $physicName;
+		 				$result['status'] = true;
+		 			} else
+		 			{
+		 				$result['error'] = 'Uploading Error.';
+		 				$result['status'] =  fasle;
+		 			}
+		 		}
+	 		}
+	 		break;
+	 	}
+	 return $result;
+	 }
+	/*-------------------------------------------------------------------------------------------------*/
 
 
 }

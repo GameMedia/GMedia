@@ -556,8 +556,7 @@ $config['images']['max_size']	= 1048576; #1Mb
 $config['images']['message_max_size']	= "Maximum size is 1Mb";
 
 #For Galleries
-$config['galleries']['path_ori'] 	= $baseFolder . 'assets/galleries/';
-$config['galleries']['path_thumb'] 	= $baseFolder . 'assets/galleries/thumb/';
+$config['galleries']['path'] 	= $baseFolder . 'assets/galleries/';
 $config['galleries']['url_ori'] 	= 'assets/galleries/';
 $config['galleries']['url_thumb'] 	= 'assets/galleries/thumb/';
 $config['galleries']['url'] 		= URL_PLATFORM;
