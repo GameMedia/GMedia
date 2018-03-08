@@ -125,7 +125,7 @@ class model_countries extends MY_Model {
 	public function loadCountriesSelect($params = array())
 	 {
 	 	$result = array();
-	 	$this->dbCms->select('id, name');
+	 	$this->dbCms->select('id, name, code');
 	 	$this->dbCms->from($this->tableCountries);
 	 	$this->dbCms->where('status','1');
 	 	$this->dbCms->order_by('name', 'ASC');
@@ -145,6 +145,7 @@ class model_countries extends MY_Model {
 	 		{
 	 			$result['rows'][$i]['id'] = $row['id'];
 	 			$result['rows'][$i]['name'] = $row['name'];
+	 			$result['rows'][$i]['code'] = $row['code'];
 	 			$i++;
 	 		}
 	 	} else
